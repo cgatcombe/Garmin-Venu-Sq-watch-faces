@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<debugInfo>
+<manifest filename="C:\Chris\Garmin\Garmin Venu Sq watch faces\garmin-connect-seed-master\manifest.xml"/>
+<pcToLineNum>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerApp.mc" id="1" lineNum="11" parent="globals/NumberPickerApp" pc="268435456" symbol="initialize"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerApp.mc" id="1" lineNum="12" parent="globals/NumberPickerApp" pc="268435460" symbol="initialize"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerApp.mc" id="2" lineNum="16" parent="globals/NumberPickerApp" pc="268435479" symbol="onStart"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerApp.mc" id="3" lineNum="20" parent="globals/NumberPickerApp" pc="268435484" symbol="onStop"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerApp.mc" id="4" lineNum="24" parent="globals/NumberPickerApp" pc="268435489" symbol="getInitialView"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerApp.mc" id="4" lineNum="25" parent="globals/NumberPickerApp" pc="268435493" symbol="getInitialView"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerApp.mc" id="5" lineNum="9" parent="globals/NumberPickerApp" pc="268438221" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerApp.mc" id="5" lineNum="9" parent="globals/NumberPickerApp" pc="268438221" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="7" lineNum="13" parent="globals/NumberPickerConstants" pc="268438114" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="8" lineNum="29" parent="globals/NPDf" pc="268435561" symbol="initialize"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="8" lineNum="30" parent="globals/NPDf" pc="268435565" symbol="initialize"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="9" lineNum="33" parent="globals/NPDf" pc="268435584" symbol="onNumberPicked"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="9" lineNum="34" parent="globals/NPDf" pc="268435588" symbol="onNumberPicked"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="10" lineNum="28" parent="globals/NPDf" pc="268438202" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="10" lineNum="28" parent="globals/NPDf" pc="268438202" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="11" lineNum="39" parent="globals/NPDi" pc="268435599" symbol="initialize"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="11" lineNum="40" parent="globals/NPDi" pc="268435603" symbol="initialize"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="12" lineNum="43" parent="globals/NPDi" pc="268435622" symbol="onNumberPicked"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="12" lineNum="44" parent="globals/NPDi" pc="268435626" symbol="onNumberPicked"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="13" lineNum="38" parent="globals/NPDi" pc="268438183" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="13" lineNum="38" parent="globals/NPDi" pc="268438183" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="14" lineNum="49" parent="globals/NPDd" pc="268435637" symbol="initialize"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="14" lineNum="50" parent="globals/NPDd" pc="268435641" symbol="initialize"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="15" lineNum="53" parent="globals/NPDd" pc="268435660" symbol="onNumberPicked"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="15" lineNum="54" parent="globals/NPDd" pc="268435664" symbol="onNumberPicked"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="16" lineNum="48" parent="globals/NPDd" pc="268438240" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="16" lineNum="48" parent="globals/NPDd" pc="268438240" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="17" lineNum="62" parent="globals/BaseInputDelegate" pc="268435675" symbol="initialize"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="17" lineNum="63" parent="globals/BaseInputDelegate" pc="268435679" symbol="initialize"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="18" lineNum="66" parent="globals/BaseInputDelegate" pc="268435698" symbol="onSelect"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="18" lineNum="67" parent="globals/BaseInputDelegate" pc="268435702" symbol="onSelect"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="70" parent="globals/BaseInputDelegate" pc="268435715" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="71" parent="globals/BaseInputDelegate" pc="268435719" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="72" parent="globals/BaseInputDelegate" pc="268435734" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="73" parent="globals/BaseInputDelegate" pc="268435734" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="74" parent="globals/BaseInputDelegate" pc="268435751" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="75" parent="globals/BaseInputDelegate" pc="268435764" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="76" parent="globals/BaseInputDelegate" pc="268435786" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="77" parent="globals/BaseInputDelegate" pc="268435840" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="78" parent="globals/BaseInputDelegate" pc="268435898" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="80" parent="globals/BaseInputDelegate" pc="268435923" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="81" parent="globals/BaseInputDelegate" pc="268435940" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="82" parent="globals/BaseInputDelegate" pc="268435953" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="84" parent="globals/BaseInputDelegate" pc="268435975" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="85" parent="globals/BaseInputDelegate" pc="268436037" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="86" parent="globals/BaseInputDelegate" pc="268436085" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="87" parent="globals/BaseInputDelegate" pc="268436143" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="89" parent="globals/BaseInputDelegate" pc="268436168" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="90" parent="globals/BaseInputDelegate" pc="268436185" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="91" parent="globals/BaseInputDelegate" pc="268436198" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="92" parent="globals/BaseInputDelegate" pc="268436220" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="93" parent="globals/BaseInputDelegate" pc="268436282" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="94" parent="globals/BaseInputDelegate" pc="268436330" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="95" parent="globals/BaseInputDelegate" pc="268436388" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="97" parent="globals/BaseInputDelegate" pc="268436413" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="98" parent="globals/BaseInputDelegate" pc="268436430" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="99" parent="globals/BaseInputDelegate" pc="268436443" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="100" parent="globals/BaseInputDelegate" pc="268436465" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="101" parent="globals/BaseInputDelegate" pc="268436527" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="102" parent="globals/BaseInputDelegate" pc="268436575" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="103" parent="globals/BaseInputDelegate" pc="268436633" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="105" parent="globals/BaseInputDelegate" pc="268436658" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="106" parent="globals/BaseInputDelegate" pc="268436675" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="107" parent="globals/BaseInputDelegate" pc="268436688" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="108" parent="globals/BaseInputDelegate" pc="268436710" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="109" parent="globals/BaseInputDelegate" pc="268436717" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="110" parent="globals/BaseInputDelegate" pc="268436765" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="111" parent="globals/BaseInputDelegate" pc="268436823" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="113" parent="globals/BaseInputDelegate" pc="268436848" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="114" parent="globals/BaseInputDelegate" pc="268436865" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="115" parent="globals/BaseInputDelegate" pc="268436878" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="116" parent="globals/BaseInputDelegate" pc="268436900" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="117" parent="globals/BaseInputDelegate" pc="268436907" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="118" parent="globals/BaseInputDelegate" pc="268436955" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="119" parent="globals/BaseInputDelegate" pc="268437013" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="121" parent="globals/BaseInputDelegate" pc="268437038" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="122" parent="globals/BaseInputDelegate" pc="268437055" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="123" parent="globals/BaseInputDelegate" pc="268437068" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="124" parent="globals/BaseInputDelegate" pc="268437090" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="125" parent="globals/BaseInputDelegate" pc="268437097" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="126" parent="globals/BaseInputDelegate" pc="268437145" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="127" parent="globals/BaseInputDelegate" pc="268437203" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="129" parent="globals/BaseInputDelegate" pc="268437228" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="130" parent="globals/BaseInputDelegate" pc="268437245" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="131" parent="globals/BaseInputDelegate" pc="268437258" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="132" parent="globals/BaseInputDelegate" pc="268437280" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="133" parent="globals/BaseInputDelegate" pc="268437287" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="134" parent="globals/BaseInputDelegate" pc="268437335" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="135" parent="globals/BaseInputDelegate" pc="268437393" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="137" parent="globals/BaseInputDelegate" pc="268437409" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="19" lineNum="140" parent="globals/BaseInputDelegate" pc="268437415" symbol="onMenu"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="20" lineNum="143" parent="globals/BaseInputDelegate" pc="268437419" symbol="onNextPage"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="21" lineNum="58" parent="globals/BaseInputDelegate" pc="268438164" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="21" lineNum="58" parent="globals/BaseInputDelegate" pc="268438164" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="22" lineNum="149" parent="globals/NumberPickerView" pc="268437424" symbol="initialize"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="22" lineNum="150" parent="globals/NumberPickerView" pc="268437428" symbol="initialize"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="23" lineNum="153" parent="globals/NumberPickerView" pc="268437447" symbol="onLayout"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="23" lineNum="154" parent="globals/NumberPickerView" pc="268437451" symbol="onLayout"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="24" lineNum="158" parent="globals/NumberPickerView" pc="268437466" symbol="onShow"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="25" lineNum="161" parent="globals/NumberPickerView" pc="268437471" symbol="onUpdate"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="25" lineNum="162" parent="globals/NumberPickerView" pc="268437475" symbol="onUpdate"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="25" lineNum="163" parent="globals/NumberPickerView" pc="268437511" symbol="onUpdate"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="25" lineNum="164" parent="globals/NumberPickerView" pc="268437523" symbol="onUpdate"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="25" lineNum="165" parent="globals/NumberPickerView" pc="268437559" symbol="onUpdate"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="25" lineNum="166" parent="globals/NumberPickerView" pc="268437584" symbol="onUpdate"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="25" lineNum="167" parent="globals/NumberPickerView" pc="268437603" symbol="onUpdate"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="25" lineNum="168" parent="globals/NumberPickerView" pc="268437622" symbol="onUpdate"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="25" lineNum="169" parent="globals/NumberPickerView" pc="268437632" symbol="onUpdate"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="25" lineNum="171" parent="globals/NumberPickerView" pc="268437645" symbol="onUpdate"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="25" lineNum="172" parent="globals/NumberPickerView" pc="268437660" symbol="onUpdate"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="25" lineNum="173" parent="globals/NumberPickerView" pc="268437711" symbol="onUpdate"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="25" lineNum="175" parent="globals/NumberPickerView" pc="268437724" symbol="onUpdate"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="25" lineNum="177" parent="globals/NumberPickerView" pc="268437772" symbol="onUpdate"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="25" lineNum="178" parent="globals/NumberPickerView" pc="268437798" symbol="onUpdate"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="25" lineNum="181" parent="globals/NumberPickerView" pc="268437858" symbol="onUpdate"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="25" lineNum="182" parent="globals/NumberPickerView" pc="268437884" symbol="onUpdate"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="25" lineNum="185" parent="globals/NumberPickerView" pc="268437944" symbol="onUpdate"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="25" lineNum="186" parent="globals/NumberPickerView" pc="268437970" symbol="onUpdate"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="25" lineNum="187" parent="globals/NumberPickerView" pc="268437983" symbol="onUpdate"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="25" lineNum="193" parent="globals/NumberPickerView" pc="268438061" symbol="onUpdate"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="26" lineNum="147" parent="globals/NumberPickerView" pc="268438145" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\garmin-connect-seed-master\\source\\NumberPickerView.mc" id="26" lineNum="147" parent="globals/NumberPickerView" pc="268438145" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="28" lineNum="2" parent="globals/Rez/Drawables" pc="268438139" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="29" lineNum="6" parent="globals/Rez/Fonts" pc="268438141" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="30" lineNum="8" parent="globals/Rez/JsonData" pc="268438143" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="31" lineNum="10" parent="globals/Rez/Layouts" pc="268438142" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="32" lineNum="12" parent="globals/Rez/Menus" pc="268438140" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="33" lineNum="14" parent="globals/Rez/Strings" pc="268438144" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="34" lineNum="1" parent="globals/Rez" pc="268438115" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="34" lineNum="1" parent="globals/Rez" pc="268438115" symbol="&lt;init&gt;"/>
+</pcToLineNum>
+<symbolTable>
+<entry id="8388639" module="true" symbol="Graphics"/>
+<entry field="true" id="14" symbol="modeLabel"/>
+<entry id="8389344" symbol="seconds"/>
+<entry id="8388632" method="true" symbol="&lt;init&gt;"/>
+<entry id="5" module="true" symbol="globals/Rez/Menus"/>
+<entry field="true" id="15" symbol="fieldTypeToDisplay"/>
+<entry id="8389041" object="true" symbol="NumberPicker"/>
+<entry id="10" object="true" symbol="NumberPickerApp"/>
+<entry id="8388924" module="true" symbol="Gregorian"/>
+<entry field="true" id="8388611" module="true" symbol="Toybox"/>
+<entry field="true" id="30" symbol="npi"/>
+<entry field="true" id="22" symbol="DISPLAY_FLOAT"/>
+<entry field="true" id="28" symbol="AppName"/>
+<entry id="9" module="true" symbol="globals/Rez/Strings"/>
+<entry id="8389080" method="true" symbol="onMenu"/>
+<entry id="8388772" module="true" object="true" symbol="Fonts"/>
+<entry id="8388648" module="true" symbol="WatchUi"/>
+<entry id="3" module="true" symbol="globals/Rez"/>
+<entry id="8389124" method="true" symbol="onUpdate"/>
+<entry id="8388771" module="true" object="true" symbol="Drawables"/>
+<entry id="26" module="true" symbol="Menus"/>
+<entry id="7" module="true" symbol="globals/Rez/Layouts"/>
+<entry field="true" id="29" symbol="np"/>
+<entry id="11" module="true" symbol="NumberPickerConstants"/>
+<entry field="true" id="8389850" symbol="count"/>
+<entry id="8389122" method="true" symbol="onLayout"/>
+<entry field="true" id="23" symbol="DISPLAY_INT"/>
+<entry id="8" module="true" symbol="globals/Rez/JsonData"/>
+<entry id="4" module="true" symbol="globals/Rez/Drawables"/>
+<entry id="8388644" module="true" symbol="System"/>
+<entry id="8389619" method="true" symbol="onSelect"/>
+<entry id="8388769" module="true" object="true" symbol="Rez"/>
+<entry id="2" module="true" symbol="globals/NumberPickerConstants"/>
+<entry id="8389102" method="true" symbol="onNumberPicked"/>
+<entry id="8388640" module="true" symbol="Lang"/>
+<entry id="8390088" module="true" object="true" symbol="JsonData"/>
+<entry field="true" id="27" symbol="LauncherIcon"/>
+<entry id="8388610" symbol="statics"/>
+<entry id="8389123" method="true" symbol="onShow"/>
+<entry id="8389342" symbol="hours"/>
+<entry id="8389350" module="true" symbol="globals"/>
+<entry field="true" id="16" symbol="dur"/>
+<entry id="8388770" module="true" object="true" symbol="Strings"/>
+<entry id="21" object="true" symbol="NumberPickerView"/>
+<entry id="8388702" method="true" symbol="initialize"/>
+<entry id="8389279" method="true" symbol="onStart"/>
+<entry id="8389280" method="true" symbol="getInitialView"/>
+<entry id="8389281" method="true" symbol="onStop"/>
+<entry id="18" object="true" symbol="NPDi"/>
+<entry id="17" object="true" symbol="NPDf"/>
+<entry id="19" object="true" symbol="NPDd"/>
+<entry id="25" module="true" symbol="Layouts"/>
+<entry id="8389343" symbol="minutes"/>
+<entry field="true" id="13" symbol="testVali"/>
+<entry field="true" id="12" symbol="testValf"/>
+<entry id="6" module="true" symbol="globals/Rez/Fonts"/>
+<entry field="true" id="24" symbol="DISPLAY_DURATION"/>
+<entry id="8389078" method="true" symbol="onNextPage"/>
+<entry id="8388635" module="true" symbol="Application"/>
+<entry id="20" object="true" symbol="BaseInputDelegate"/>
+</symbolTable>
+<localVars>
+<entry arg="true" endPc="268435483" name="state" stackId="1" startPc="268435479"/>
+<entry arg="true" endPc="268435488" name="state" stackId="1" startPc="268435484"/>
+<entry arg="true" endPc="268435598" name="value" stackId="1" startPc="268435584"/>
+<entry arg="true" endPc="268435636" name="value" stackId="1" startPc="268435622"/>
+<entry arg="true" endPc="268435674" name="value" stackId="1" startPc="268435660"/>
+<entry endPc="268437411" name="value" stackId="1" startPc="268435734"/>
+<entry arg="true" endPc="268437465" name="dc" stackId="1" startPc="268437447"/>
+<entry endPc="268438111" name="modeLabelFontHeight" stackId="2" startPc="268437475"/>
+<entry endPc="268438111" name="valueLocY" stackId="6" startPc="268437475"/>
+<entry endPc="268438111" name="centerY" stackId="4" startPc="268437475"/>
+<entry endPc="268438111" name="labelLocY" stackId="5" startPc="268437475"/>
+<entry endPc="268438111" name="centerX" stackId="3" startPc="268437475"/>
+<entry arg="true" endPc="268438112" name="dc" stackId="1" startPc="268437471"/>
+</localVars>
+<annotations>
+<annotationEntry annotation="initialized" class="Drawables" module="globals/Rez" symbol="LauncherIcon"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="AppName"/>
+</annotations>
+<dataEntryOffsetMappings>
+<dataEntry label="globals" offset="95" parentId="" symbolId="globals" type="module"/>
+<dataEntry label="globals/NumberPickerConstants" offset="246" parentId="globals" symbolId="NumberPickerConstants" type="module"/>
+<dataEntry label="globals/Rez" offset="301" parentId="globals" symbolId="Rez" type="module"/>
+<dataEntry label="globals/Rez/Drawables" offset="380" parentId="Rez" symbolId="Drawables" type="module"/>
+<dataEntry label="globals/Rez/Menus" offset="419" parentId="Rez" symbolId="Menus" type="module"/>
+<dataEntry label="globals/Rez/Fonts" offset="450" parentId="Rez" symbolId="Fonts" type="module"/>
+<dataEntry label="globals/Rez/Layouts" offset="481" parentId="Rez" symbolId="Layouts" type="module"/>
+<dataEntry label="globals/Rez/JsonData" offset="512" parentId="Rez" symbolId="JsonData" type="module"/>
+<dataEntry label="globals/Rez/Strings" offset="543" parentId="Rez" symbolId="Strings" type="module"/>
+<dataEntry label="globals/NumberPickerView" offset="582" parentId="globals" symbolId="NumberPickerView" type="class"/>
+<dataEntry label="globals/BaseInputDelegate" offset="653" parentId="globals" symbolId="BaseInputDelegate" type="class"/>
+<dataEntry label="globals/NPDi" offset="740" parentId="globals" symbolId="NPDi" type="class"/>
+<dataEntry label="globals/NPDf" offset="795" parentId="globals" symbolId="NPDf" type="class"/>
+<dataEntry label="globals/NumberPickerApp" offset="850" parentId="globals" symbolId="NumberPickerApp" type="class"/>
+<dataEntry label="globals/NPDd" offset="921" parentId="globals" symbolId="NPDd" type="class"/>
+</dataEntryOffsetMappings>
+<functions>
+<functionEntry accessMode="public" endPc="268435478" name="initialize" parent="NumberPickerApp" startPc="268435456">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268435483" name="onStart" parent="NumberPickerApp" startPc="268435479">
+<param id="state"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268435488" name="onStop" parent="NumberPickerApp" startPc="268435484">
+<param id="state"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268435560" name="getInitialView" parent="NumberPickerApp" startPc="268435489">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="protected" endPc="268438239" name="&lt;init&gt;" parent="NumberPickerApp" startPc="268438221">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="protected" endPc="268438114" name="&lt;init&gt;" parent="NumberPickerConstants" startPc="268438114">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268435583" name="initialize" parent="NPDf" startPc="268435561">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268435598" name="onNumberPicked" parent="NPDf" startPc="268435584">
+<param id="value"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="protected" endPc="268438220" name="&lt;init&gt;" parent="NPDf" startPc="268438202">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268435621" name="initialize" parent="NPDi" startPc="268435599">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268435636" name="onNumberPicked" parent="NPDi" startPc="268435622">
+<param id="value"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="protected" endPc="268438201" name="&lt;init&gt;" parent="NPDi" startPc="268438183">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268435659" name="initialize" parent="NPDd" startPc="268435637">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268435674" name="onNumberPicked" parent="NPDd" startPc="268435660">
+<param id="value"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="protected" endPc="268438258" name="&lt;init&gt;" parent="NPDd" startPc="268438240">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268435697" name="initialize" parent="BaseInputDelegate" startPc="268435675">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268435714" name="onSelect" parent="BaseInputDelegate" startPc="268435698">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268437418" name="onMenu" parent="BaseInputDelegate" startPc="268435715">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268437423" name="onNextPage" parent="BaseInputDelegate" startPc="268437419">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="protected" endPc="268438182" name="&lt;init&gt;" parent="BaseInputDelegate" startPc="268438164">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268437446" name="initialize" parent="NumberPickerView" startPc="268437424">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268437465" name="onLayout" parent="NumberPickerView" startPc="268437447">
+<param id="dc"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268437470" name="onShow" parent="NumberPickerView" startPc="268437466">
+<documentation><![CDATA[<div class="description"> Restore the state of the app and prepare the view to be shown<br/></div>]]></documentation>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268438112" name="onUpdate" parent="NumberPickerView" startPc="268437471">
+<param id="dc"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="protected" endPc="268438163" name="&lt;init&gt;" parent="NumberPickerView" startPc="268438145">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="protected" endPc="268438139" name="&lt;init&gt;" parent="Drawables" startPc="268438139">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="protected" endPc="268438141" name="&lt;init&gt;" parent="Fonts" startPc="268438141">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="protected" endPc="268438143" name="&lt;init&gt;" parent="JsonData" startPc="268438143">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="protected" endPc="268438142" name="&lt;init&gt;" parent="Layouts" startPc="268438142">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="protected" endPc="268438140" name="&lt;init&gt;" parent="Menus" startPc="268438140">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="protected" endPc="268438144" name="&lt;init&gt;" parent="Strings" startPc="268438144">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="protected" endPc="268438138" name="&lt;init&gt;" parent="Rez" startPc="268438115">
+<documentation/>
+</functionEntry>
+</functions>
+</debugInfo>

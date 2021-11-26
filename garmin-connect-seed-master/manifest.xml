@@ -26,6 +26,7 @@
             <iq:product id="vivoactive3"/>
             <iq:product id="approachs60"/>
             <iq:product id="fenix3_hr"/>
+            <iq:product id="venusq"/>
         </iq:products>
         <iq:permissions/>
         <iq:languages>
