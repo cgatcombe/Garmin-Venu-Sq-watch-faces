@@ -1,0 +1,6 @@
+<resources>
+  <layout id="WatchFaceLayout">
+    <label text="Page Heading" x="10" y="25" font="Gfx.FONT_LARGE" color="Gfx.COLOR_BLACK" />
+    <label id="TimeLabel" x="center" y="center" />
+  </layout>
+</resources>

@@ -1,0 +1,3 @@
+project.manifest = manifest.xml
+#vivoactive_hr.resourcePath = resources;layouts
+venusq.resourcePath = resources;layouts

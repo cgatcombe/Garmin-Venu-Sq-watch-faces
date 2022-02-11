@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<debugInfo>
+<manifest filename="C:\Chris\Garmin\Garmin Venu Sq watch faces\Caffeine to code sample\manifest.xml"/>
+<pcToLineNum>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\Caffeine to code sample\\source\\SurfsUpApp.mc" id="1" lineNum="11" parent="globals/SurfsUpApp" pc="268435456" symbol="getInitialView"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\Caffeine to code sample\\source\\SurfsUpApp.mc" id="1" lineNum="13" parent="globals/SurfsUpApp" pc="268435460" symbol="getInitialView"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\Caffeine to code sample\\source\\SurfsUpApp.mc" id="2" lineNum="9" parent="globals/SurfsUpApp" pc="268435834" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\Caffeine to code sample\\source\\SurfsUpApp.mc" id="2" lineNum="9" parent="globals/SurfsUpApp" pc="268435834" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\Caffeine to code sample\\source\\SurfsUpApp.mc" id="3" lineNum="9" parent="globals/SurfsUpApp" pc="268435498" symbol="initialize"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\Caffeine to code sample\\source\\SurfsUpView.mc" id="5" lineNum="6" parent="globals/SurfsUpWatchFace" pc="268435501" symbol="onLayout"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\Caffeine to code sample\\source\\SurfsUpView.mc" id="5" lineNum="8" parent="globals/SurfsUpWatchFace" pc="268435505" symbol="onLayout"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\Caffeine to code sample\\source\\SurfsUpView.mc" id="6" lineNum="11" parent="globals/SurfsUpWatchFace" pc="268435541" symbol="onUpdate"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\Caffeine to code sample\\source\\SurfsUpView.mc" id="6" lineNum="13" parent="globals/SurfsUpWatchFace" pc="268435545" symbol="onUpdate"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\Caffeine to code sample\\source\\SurfsUpView.mc" id="6" lineNum="14" parent="globals/SurfsUpWatchFace" pc="268435569" symbol="onUpdate"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\Caffeine to code sample\\source\\SurfsUpView.mc" id="6" lineNum="15" parent="globals/SurfsUpWatchFace" pc="268435601" symbol="onUpdate"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\Caffeine to code sample\\source\\SurfsUpView.mc" id="6" lineNum="16" parent="globals/SurfsUpWatchFace" pc="268435633" symbol="onUpdate"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\Caffeine to code sample\\source\\SurfsUpView.mc" id="6" lineNum="18" parent="globals/SurfsUpWatchFace" pc="268435656" symbol="onUpdate"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\Caffeine to code sample\\source\\SurfsUpView.mc" id="7" lineNum="4" parent="globals/SurfsUpWatchFace" pc="268435878" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\Caffeine to code sample\\source\\SurfsUpView.mc" id="7" lineNum="4" parent="globals/SurfsUpWatchFace" pc="268435878" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Chris\\Garmin\\Garmin Venu Sq watch faces\\Caffeine to code sample\\source\\SurfsUpView.mc" id="8" lineNum="4" parent="globals/SurfsUpWatchFace" pc="268435677" symbol="initialize"/>
+<entry filename="Rez" id="10" lineNum="2" parent="globals/Rez/Drawables" pc="268435872" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="11" lineNum="6" parent="globals/Rez/Fonts" pc="268435874" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="12" lineNum="8" parent="globals/Rez/JsonData" pc="268435876" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="13" lineNum="17" parent="globals/Rez/Layouts" pc="268435680" symbol="WatchFaceLayout"/>
+<entry filename="Rez" id="13" lineNum="19" parent="globals/Rez/Layouts" pc="268435692" symbol="WatchFaceLayout"/>
+<entry filename="Rez" id="13" lineNum="21" parent="globals/Rez/Layouts" pc="268435815" symbol="WatchFaceLayout"/>
+<entry filename="Rez" id="14" lineNum="10" parent="globals/Rez/Layouts" pc="268435875" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="15" lineNum="26" parent="globals/Rez/Menus" pc="268435873" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="16" lineNum="28" parent="globals/Rez/Strings" pc="268435877" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="17" lineNum="1" parent="globals/Rez" pc="268435853" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="17" lineNum="1" parent="globals/Rez" pc="268435853" symbol="&lt;init&gt;"/>
+</pcToLineNum>
+<symbolTable>
+<entry id="8388639" module="true" symbol="Graphics"/>
+<entry id="8388632" method="true" symbol="&lt;init&gt;"/>
+<entry id="4" module="true" symbol="globals/Rez/Menus"/>
+<entry field="true" id="8388611" module="true" symbol="Toybox"/>
+<entry field="true" id="15" symbol="AppName"/>
+<entry id="8" module="true" symbol="globals/Rez/Strings"/>
+<entry id="8388772" module="true" object="true" symbol="Fonts"/>
+<entry id="14" method="true" symbol="WatchFaceLayout"/>
+<entry id="8388648" module="true" symbol="WatchUi"/>
+<entry id="2" module="true" symbol="globals/Rez"/>
+<entry id="8389124" method="true" symbol="onUpdate"/>
+<entry field="true" id="8389065" symbol="locY"/>
+<entry field="true" id="8389064" symbol="locX"/>
+<entry id="8388771" module="true" object="true" symbol="Drawables"/>
+<entry id="8389348" symbol="font"/>
+<entry id="12" module="true" symbol="Menus"/>
+<entry id="6" module="true" symbol="globals/Rez/Layouts"/>
+<entry id="9" object="true" symbol="SurfsUpApp"/>
+<entry id="8389122" method="true" symbol="onLayout"/>
+<entry field="true" id="8389063" symbol="identifier"/>
+<entry id="7" module="true" symbol="globals/Rez/JsonData"/>
+<entry id="3" module="true" symbol="globals/Rez/Drawables"/>
+<entry id="8388644" module="true" symbol="System"/>
+<entry id="8388769" module="true" object="true" symbol="Rez"/>
+<entry id="8388640" module="true" symbol="Lang"/>
+<entry id="8390088" module="true" object="true" symbol="JsonData"/>
+<entry field="true" id="13" symbol="LauncherIcon"/>
+<entry id="8388610" symbol="statics"/>
+<entry id="8389350" module="true" symbol="globals"/>
+<entry id="8388770" module="true" object="true" symbol="Strings"/>
+<entry id="8388702" method="true" symbol="initialize"/>
+<entry id="10" object="true" symbol="SurfsUpWatchFace"/>
+<entry id="8389280" method="true" symbol="getInitialView"/>
+<entry id="11" module="true" symbol="Layouts"/>
+<entry id="5" module="true" symbol="globals/Rez/Fonts"/>
+<entry id="8388635" module="true" symbol="Application"/>
+</symbolTable>
+<localVars>
+<entry arg="true" endPc="268435540" name="deviceContext" stackId="1" startPc="268435501"/>
+<entry endPc="268435675" name="hour" stackId="3" startPc="268435545"/>
+<entry endPc="268435675" name="timeLabel" stackId="2" startPc="268435545"/>
+<entry endPc="268435675" name="minute" stackId="4" startPc="268435545"/>
+<entry arg="true" endPc="268435676" name="deviceContext" stackId="1" startPc="268435541"/>
+<entry endPc="268435831" name="rez_cmp_local_text_TimeLabel" stackId="2" startPc="268435692"/>
+<entry arg="true" endPc="268435832" name="dc" stackId="1" startPc="268435680"/>
+</localVars>
+<annotations>
+<annotationEntry annotation="initialized" class="Drawables" module="globals/Rez" symbol="LauncherIcon"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="AppName"/>
+</annotations>
+<dataEntryOffsetMappings>
+<dataEntry label="globals" offset="87" parentId="" symbolId="globals" type="module"/>
+<dataEntry label="globals/SurfsUpApp" offset="150" parentId="globals" symbolId="SurfsUpApp" type="class"/>
+<dataEntry label="globals/Rez" offset="205" parentId="globals" symbolId="Rez" type="module"/>
+<dataEntry label="globals/Rez/Drawables" offset="284" parentId="Rez" symbolId="Drawables" type="module"/>
+<dataEntry label="globals/Rez/Menus" offset="323" parentId="Rez" symbolId="Menus" type="module"/>
+<dataEntry label="globals/Rez/Fonts" offset="354" parentId="Rez" symbolId="Fonts" type="module"/>
+<dataEntry label="globals/Rez/Layouts" offset="385" parentId="Rez" symbolId="Layouts" type="module"/>
+<dataEntry label="globals/Rez/JsonData" offset="424" parentId="Rez" symbolId="JsonData" type="module"/>
+<dataEntry label="globals/Rez/Strings" offset="455" parentId="Rez" symbolId="Strings" type="module"/>
+<dataEntry label="globals/SurfsUpWatchFace" offset="494" parentId="globals" symbolId="SurfsUpWatchFace" type="class"/>
+</dataEntryOffsetMappings>
+<functions>
+<functionEntry accessMode="public" endPc="268435497" name="getInitialView" parent="SurfsUpApp" startPc="268435456">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="protected" endPc="268435852" name="&lt;init&gt;" parent="SurfsUpApp" startPc="268435834">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268435500" name="initialize" parent="SurfsUpApp" startPc="268435498">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268435540" name="onLayout" parent="SurfsUpWatchFace" startPc="268435501">
+<param id="deviceContext"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268435676" name="onUpdate" parent="SurfsUpWatchFace" startPc="268435541">
+<param id="deviceContext"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="protected" endPc="268435896" name="&lt;init&gt;" parent="SurfsUpWatchFace" startPc="268435878">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268435679" name="initialize" parent="SurfsUpWatchFace" startPc="268435677">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="protected" endPc="268435872" name="&lt;init&gt;" parent="Drawables" startPc="268435872">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="protected" endPc="268435874" name="&lt;init&gt;" parent="Fonts" startPc="268435874">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="protected" endPc="268435876" name="&lt;init&gt;" parent="JsonData" startPc="268435876">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268435832" name="WatchFaceLayout" parent="Layouts" startPc="268435680">
+<param id="dc"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="protected" endPc="268435875" name="&lt;init&gt;" parent="Layouts" startPc="268435875">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="protected" endPc="268435873" name="&lt;init&gt;" parent="Menus" startPc="268435873">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="protected" endPc="268435877" name="&lt;init&gt;" parent="Strings" startPc="268435877">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="protected" endPc="268435871" name="&lt;init&gt;" parent="Rez" startPc="268435853">
+<documentation/>
+</functionEntry>
+</functions>
+</debugInfo>
