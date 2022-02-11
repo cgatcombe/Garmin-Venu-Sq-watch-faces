@@ -1,6 +1,7 @@
 @echo off
 set monkeyc=C:\Users\chris\AppData\Roaming\Garmin\ConnectIQ\Sdks\connectiq-sdk-win-4.0.6-2021-10-06-af9b9d6e2\bin
 set device=venusq
+rem set device=fenix5s
 set prg=GarminConnectSeedMaster.prg
 
 echo ConnectIQ...
