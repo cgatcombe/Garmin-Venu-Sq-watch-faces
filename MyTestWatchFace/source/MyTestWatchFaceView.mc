@@ -144,7 +144,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace {
         }
     }
 
-    function drawBox(dc, x, y, size, colour)
+    function drawBox(dc as Dc, x, y, size, colour as Graphics.ColorValue) as Void
     {
         dc.setColor(colour, Graphics.COLOR_TRANSPARENT);
         // Draw box outline
@@ -154,7 +154,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace {
         dc.fillRectangle(x, y, size, size);
     }
 
-    function drawLED(dc, digit, x, y)
+    function drawLED(dc as Dc, digit, x, y) as Void
     {
         var w=20;
         var h=40;
@@ -296,7 +296,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace {
         }
     }
 
-    function getHeartRate() 
+    function getHeartRate() as Lang.String
     {
         var hrIterator = ActivityMonitor.getHeartRateHistory(1, true);
         var previous = hrIterator.next();
@@ -307,7 +307,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace {
         return previous.heartRate.format("%02d");
     }
 
-    function getBattery()
+    function getBattery() as Lang.String
     {
         var stats = System.getSystemStats();
         var pwr = stats.battery;
@@ -315,7 +315,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace {
         return batStr;
     }
 
-    function getSteps()
+    function getSteps() as Lang.String
     {
         var stats = System.getSystemStats();
         //var steps = stats.stepCount;
@@ -341,7 +341,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace {
         return "--";
     }
 
-    function getDate()
+    function getDate() as Lang.String
     {
         var now = Time.now();
         var info = Gregorian.info(now, Time.FORMAT_LONG);
@@ -349,7 +349,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace {
         return dateStr;
     }
 
-    function onSensor(sensorInfo)
+    function onSensor(sensorInfo) as Void
     {
         System.println("Heart Rate: " + sensorInfo.heartRate);
     }
