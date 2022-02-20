@@ -7,11 +7,11 @@ using Toybox.Time.Gregorian as Gregorian;
 
 class MyTestWatchFaceView extends WatchUi.WatchFace {
 
-    const UseInbuiltSensorCode = false;
-    const UseViewsAndLayout = false;
-    const showRules = false; // Display horizontal test lines for alignment checking
+    const UseInbuiltSensorCode as Lang.Boolean = false;
+    const UseViewsAndLayout as Lang.Boolean = false;
+    const showRules as Lang.Boolean = false; // If true, display horizontal test lines for alignment checking
     const offset = 15; // For graphic text drawing
-    const showColorBoxes = true; // Shows boxes with all the colours for testing
+    const showColorBoxes as Lang.Boolean = false; // If true, shows boxes with all the colours for testing
 
     function initialize()
     {
@@ -158,10 +158,21 @@ class MyTestWatchFaceView extends WatchUi.WatchFace {
     {
         var w=20;
         var h=40;
-        var gap=2;
-        dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_TRANSPARENT);
-        dc.setPenWidth(1);
-        dc.drawRectangle(x, y, w, h);
+        var angleDeg as Lang.Float = 8.0;
+        var angleRad as Lang.Float = (2*Math.PI)*(angleDeg/360.0);
+        var topOffs as Lang.Float = (Math.tan(angleRad)) * h;
+        var midOffs as Lang.Float = (Math.tan(angleRad)) * (h/2);
+        var showBoundingBox as Lang.Boolean = false; // If true, show bounding box around the LED
+
+        System.println("topOffs " + topOffs);
+        System.println("midOffs " + midOffs);
+
+        if (showBoundingBox)
+        {
+            dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_TRANSPARENT);
+            dc.setPenWidth(1);
+            dc.drawRectangle(x, y, w, h);
+        }
 
         var aSegment as Lang.Boolean = false;
         var bSegment as Lang.Boolean = false;
@@ -273,26 +284,27 @@ class MyTestWatchFaceView extends WatchUi.WatchFace {
         }
 
         dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
+        dc.setPenWidth(5);
         if (aSegment) {
-             dc.fillRectangle(x+gap, y-gap, w-(2*gap), 2*gap); // a
+             dc.drawLine(x+topOffs, y, x+w+topOffs, y); // a
         }
         if (bSegment) {
-            dc.fillRectangle(x+w-gap, y+gap, 2*gap, (h/2)-(2*gap)); // b
+            dc.drawLine(x+w+topOffs, y, x+w+midOffs, y+(h/2)); // b
         }
         if (cSegment) {
-            dc.fillRectangle(x+w-gap, y+(h/2)+gap, 2*gap, (h/2)-(2*gap)); // c
+            dc.drawLine(x+w+midOffs, y+(h/2), x+w, y+h); // c
         }
         if (dSegment) {
-            dc.fillRectangle(x+gap, y+h-gap, w-(2*gap), 2*gap); // d
+            dc.drawLine(x, y+h, x+w, y+h); // d
         }
         if (eSegment) {
-            dc.fillRectangle(x-gap, y+(h/2)+gap, 2*gap, (h/2)-(2*gap)); // e
+            dc.drawLine(x, y+h, x+midOffs, y+(h/2)); // e
         }
         if (fSegment) {
-            dc.fillRectangle(x-gap, y+gap, 2*gap, (h/2)-(2*gap)); // f
+            dc.drawLine(x+midOffs, y+(h/2), x+topOffs, y); // f
         }
         if (gSegment) {
-            dc.fillRectangle(x+gap, y+(h/2)-gap, w-(2*gap), 2*gap); // g
+            dc.drawLine(x+midOffs, y+(h/2), x+w+midOffs, y+(h/2)); // g
         }
     }
 
