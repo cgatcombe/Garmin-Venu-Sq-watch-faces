@@ -12,6 +12,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace {
     const showRules as Lang.Boolean = false; // If true, display horizontal test lines for alignment checking
     const offset = 15; // For graphic text drawing
     const showColorBoxes as Lang.Boolean = false; // If true, shows boxes with all the colours for testing
+    const showAllLedDigits as Lang.Boolean = true; // If true, show all LED digits
 
     function initialize()
     {
@@ -75,8 +76,8 @@ class MyTestWatchFaceView extends WatchUi.WatchFace {
             // Screen size should be 240x240 (at least on Venu Sq)
             var screenWidth = dc.getWidth();
             var screenHeight = dc.getHeight();
-            System.println("screenWidth " + screenWidth);
-            System.println("screenHeight " + screenHeight);
+            //System.println("screenWidth " + screenWidth);
+            //System.println("screenHeight " + screenHeight);
 
             // Seem to need to do this first before anything else
             //dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_RED);
@@ -131,16 +132,19 @@ class MyTestWatchFaceView extends WatchUi.WatchFace {
                 drawBox(dc, 70, 60, 15, Graphics.COLOR_YELLOW);
             }
 
-            drawLED(dc, 0, 10, 100);
-            drawLED(dc, 1, 60, 100);
-            drawLED(dc, 2, 110, 100);
-            drawLED(dc, 3, 160, 100);
-            drawLED(dc, 4, 210, 100);
-            drawLED(dc, 5, 10, 160);
-            drawLED(dc, 6, 60, 160);
-            drawLED(dc, 7, 110, 160);
-            drawLED(dc, 8, 160, 160);
-            drawLED(dc, 9, 210, 160);
+            if (showAllLedDigits)
+            {
+                drawLED(dc, 0, 10, 100);
+                drawLED(dc, 1, 60, 100);
+                drawLED(dc, 2, 110, 100);
+                drawLED(dc, 3, 160, 100);
+                drawLED(dc, 4, 210, 100);
+                drawLED(dc, 5, 10, 160);
+                drawLED(dc, 6, 60, 160);
+                drawLED(dc, 7, 110, 160);
+                drawLED(dc, 8, 160, 160);
+                drawLED(dc, 9, 210, 160);
+            }
         }
     }
 
@@ -164,8 +168,8 @@ class MyTestWatchFaceView extends WatchUi.WatchFace {
         var midOffs as Lang.Float = (Math.tan(angleRad)) * (h/2);
         var showBoundingBox as Lang.Boolean = false; // If true, show bounding box around the LED
 
-        System.println("topOffs " + topOffs);
-        System.println("midOffs " + midOffs);
+        //System.println("topOffs " + topOffs);
+        //System.println("midOffs " + midOffs);
 
         if (showBoundingBox)
         {
