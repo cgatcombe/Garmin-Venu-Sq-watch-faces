@@ -10,9 +10,9 @@ class MyTestWatchFaceView extends WatchUi.WatchFace {
     const UseInbuiltSensorCode as Lang.Boolean = false;
     const UseViewsAndLayout as Lang.Boolean = false;
     const showRules as Lang.Boolean = false; // If true, display horizontal test lines for alignment checking
-    const offset = 15; // For graphic text drawing
+    const offset as Lang.Number = 15; // For graphic text drawing
     const showColorBoxes as Lang.Boolean = false; // If true, shows boxes with all the colours for testing
-    const showAllLedDigits as Lang.Boolean = true; // If true, show all LED digits
+    const showAllLedDigits as Lang.Boolean = false; // If true, show all LED digits
 
     function initialize()
     {
@@ -43,29 +43,29 @@ class MyTestWatchFaceView extends WatchUi.WatchFace {
     function onUpdate(dc as Dc) as Void
     {
         // Get and show the current time
-        var clockTime = System.getClockTime();
-        var timeString = Lang.format("$1$:$2$", [clockTime.hour, clockTime.min.format("%02d")]);
-        var battery = getBattery();
-        var date = getDate();
-        var steps = getSteps();
-        var heartRate = getHeartRate();
+        var clockTime as Lang.ClockTime = System.getClockTime();
+        var timeString as Lang.String = Lang.format("$1$:$2$", [clockTime.hour, clockTime.min.format("%02d")]);
+        var battery as Lang.String = getBattery();
+        var date as Lang.String = getDate();
+        var steps as Lang.String = getSteps();
+        var heartRate as Lang.String = getHeartRate();
 
         if (UseViewsAndLayout)
         {
-            var view = View.findDrawableById("TimeLabel") as Text;
+            var view as Lang.View = View.findDrawableById("TimeLabel") as Text;
             view.setText(timeString);
 
-            var view2 = View.findDrawableById("TopLeft") as Text;
+            var view2 as Lang.View = View.findDrawableById("TopLeft") as Text;
             //view2.setText("T.Left");
             view2.setText("B: " + battery);
 
-            var view3 = View.findDrawableById("TopRight") as Text;
+            var view3 as Lang.View = View.findDrawableById("TopRight") as Text;
             view3.setText("D: " + date);
 
-            var view4 = View.findDrawableById("BottomLeft") as Text;
+            var view4 as Lang.View = View.findDrawableById("BottomLeft") as Text;
             view4.setText("S: " + steps);
 
-            var view5 = View.findDrawableById("BottomRight") as Text;
+            var view5 as Lang.View = View.findDrawableById("BottomRight") as Text;
             view5.setText("H: " + heartRate);
 
             // Call the parent onUpdate function to redraw the layout
@@ -74,8 +74,8 @@ class MyTestWatchFaceView extends WatchUi.WatchFace {
         else
         {
             // Screen size should be 240x240 (at least on Venu Sq)
-            var screenWidth = dc.getWidth();
-            var screenHeight = dc.getHeight();
+            var screenWidth as Lang.Number = dc.getWidth();
+            var screenHeight as Lang.Number = dc.getHeight();
             //System.println("screenWidth " + screenWidth);
             //System.println("screenHeight " + screenHeight);
 
@@ -145,6 +145,26 @@ class MyTestWatchFaceView extends WatchUi.WatchFace {
                 drawLED(dc, 8, 160, 160);
                 drawLED(dc, 9, 210, 160);
             }
+            else
+            {
+                var x as Lang.Number = 40;
+                //System.println("timeString = " + timeString + ", length = " + timeString.length());
+                var timeArr as Lang.Array = timeString.toCharArray();
+                //System.println("timeArr = " + timeArr + ", size = " + timeArr.size());
+                for (var i=0; i<timeArr.size(); i++)
+                {
+                    //System.println("i = " + i);
+                    var asciiChar as Lang.Number = timeArr[i].toNumber();
+                    //System.println("asciiChar = " + asciiChar);
+                    var digit as Lang.Number = asciiChar - 48; // Subtract 48 from ASCII code to get the digit
+                    //System.println("digit = " + digit);
+                    if (digit >= 0 && digit <= 9) // Only draw the digits, nothing else
+                    {
+                        drawLED(dc, digit, x, 100);
+                        x+=50;
+                    }
+                }
+            }
         }
     }
 
@@ -158,10 +178,11 @@ class MyTestWatchFaceView extends WatchUi.WatchFace {
         dc.fillRectangle(x, y, size, size);
     }
 
-    function drawLED(dc as Dc, digit, x, y) as Void
+    function drawLED(dc as Dc, digit as Lang.Number, x, y) as Void
     {
-        var w=20;
-        var h=40;
+        System.println("drawLED: digit " + digit);
+        var w as Lang.Number = 20;
+        var h as Lang.Number = 40;
         var angleDeg as Lang.Float = 8.0;
         var angleRad as Lang.Float = (2*Math.PI)*(angleDeg/360.0);
         var topOffs as Lang.Float = (Math.tan(angleRad)) * h;
@@ -314,8 +335,8 @@ class MyTestWatchFaceView extends WatchUi.WatchFace {
 
     function getHeartRate() as Lang.String
     {
-        var hrIterator = ActivityMonitor.getHeartRateHistory(1, true);
-        var previous = hrIterator.next();
+        var hrIterator as Lang.HeartRateIterator = ActivityMonitor.getHeartRateHistory(1, true);
+        var previous as Lang.HeartRateIterator = hrIterator.next();
 
         if (previous == null || previous.heartRate == ActivityMonitor.INVALID_HR_SAMPLE) {
             return "--";
@@ -325,15 +346,15 @@ class MyTestWatchFaceView extends WatchUi.WatchFace {
 
     function getBattery() as Lang.String
     {
-        var stats = System.getSystemStats();
-        var pwr = stats.battery;
-        var batStr = Lang.format( "$1$%", [ pwr.format( "%2d" ) ] );
+        var stats as Lang.Stats = System.getSystemStats();
+        var pwr as Lang.Float = stats.battery;
+        var batStr as Lang.String = Lang.format( "$1$%", [ pwr.format( "%2d" ) ] );
         return batStr;
     }
 
     function getSteps() as Lang.String
     {
-        var stats = System.getSystemStats();
+        var stats as Lang.System.Stats = System.getSystemStats();
         //var steps = stats.stepCount;
         //var steps = stats.steps;
         //var steps = stats.step;
@@ -341,7 +362,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace {
         //var steps = stats.distance; //.steps;
 
         // get ActivityMonitor info
-        var info = ActivityMonitor.getInfo();
+        var info as Lang.ActivityMonitor.Info = ActivityMonitor.getInfo();
         //var steps = info.steps;
         //var calories = info.calories;
 
@@ -359,9 +380,9 @@ class MyTestWatchFaceView extends WatchUi.WatchFace {
 
     function getDate() as Lang.String
     {
-        var now = Time.now();
-        var info = Gregorian.info(now, Time.FORMAT_LONG);
-        var dateStr = Lang.format("$1$ $2$", [info.day_of_week, info.day]);
+        var now as Lang.Time.Moment = Time.now();
+        var info as Lang.Time.Gre.Info = Gregorian.info(now, Time.FORMAT_LONG);
+        var dateStr as Lang.String = Lang.format("$1$ $2$", [info.day_of_week, info.day]);
         return dateStr;
     }
 
