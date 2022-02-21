@@ -5,20 +5,34 @@ import Toybox.WatchUi;
 using Toybox.Sensor;
 using Toybox.Time.Gregorian as Gregorian;
 
-class MyTestWatchFaceView extends WatchUi.WatchFace {
+class MyTestWatchFaceView extends WatchUi.WatchFace
+{
+    // Constants for main watch screen display
+    const WATCH_useInbuiltSensors as Lang.Boolean = false; // If true, use sensors (doesn't work yet)
+    const WATCH_useViewsAndLayout as Lang.Boolean = false; // If true, use views and layout defined in layout.xml; otherwise draw graphics directly
+    const WATCH_labelOffset as Lang.Number = 15; // For graphic text drawing
+    //var screenWidth as Lang.Number = dc.getWidth();
+    //var screenHeight as Lang.Number = dc.getHeight();
 
-    const UseInbuiltSensorCode as Lang.Boolean = false;
-    const UseViewsAndLayout as Lang.Boolean = false;
-    const showRules as Lang.Boolean = false; // If true, display horizontal test lines for alignment checking
-    const offset as Lang.Number = 15; // For graphic text drawing
-    const showColorBoxes as Lang.Boolean = false; // If true, shows boxes with all the colours for testing
-    const showAllLedDigits as Lang.Boolean = false; // If true, show all LED digits
+    // Constants for the LED digital display
+    const LED_angleDeg as Lang.Float = 8.0;
+    const LED_angleRad as Lang.Float = (2*Math.PI)*(LED_angleDeg/360.0);
+    const LED_width as Lang.Number = 20;
+    const LED_height as Lang.Number = 40;
+    const LED_topOffs as Lang.Float = (Math.tan(LED_angleRad)) * LED_height;
+    const LED_midOffs as Lang.Float = (Math.tan(LED_angleRad)) * (LED_height/2);
+    const LED_showBoundingBox as Lang.Boolean = false; // If true, show bounding box around the LED
+
+    // Constants for enabling/disabling test functions 
+    const TEST_showRuleLines as Lang.Boolean = false; // If true, display horizontal test lines for alignment checking
+    const TEST_showColoredBoxes as Lang.Boolean = false; // If true, shows boxes with all the colours for testing
+    const TEST_showAllLedDigits as Lang.Boolean = false; // If true, show all LED digits; if false show time
 
     function initialize()
     {
         WatchFace.initialize();
 
-        if (UseInbuiltSensorCode)
+        if (WATCH_useInbuiltSensors)
         {
             //System.enableSensorType(SENSOR_ONBOARD_PULSE_OXIMETRY);
             Sensor.setEnabledSensors([Sensor.SENSOR_HEARTRATE]);
@@ -42,7 +56,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace {
     // Update the view
     function onUpdate(dc as Dc) as Void
     {
-        // Get and show the current time
+        // Get and show the current time and other items of interest
         var clockTime as Lang.ClockTime = System.getClockTime();
         var timeString as Lang.String = Lang.format("$1$:$2$", [clockTime.hour, clockTime.min.format("%02d")]);
         var battery as Lang.String = getBattery();
@@ -50,13 +64,12 @@ class MyTestWatchFaceView extends WatchUi.WatchFace {
         var steps as Lang.String = getSteps();
         var heartRate as Lang.String = getHeartRate();
 
-        if (UseViewsAndLayout)
+        if (WATCH_useViewsAndLayout)
         {
             var view as Lang.View = View.findDrawableById("TimeLabel") as Text;
             view.setText(timeString);
 
             var view2 as Lang.View = View.findDrawableById("TopLeft") as Text;
-            //view2.setText("T.Left");
             view2.setText("B: " + battery);
 
             var view3 as Lang.View = View.findDrawableById("TopRight") as Text;
@@ -76,17 +89,13 @@ class MyTestWatchFaceView extends WatchUi.WatchFace {
             // Screen size should be 240x240 (at least on Venu Sq)
             var screenWidth as Lang.Number = dc.getWidth();
             var screenHeight as Lang.Number = dc.getHeight();
-            //System.println("screenWidth " + screenWidth);
-            //System.println("screenHeight " + screenHeight);
 
-            // Seem to need to do this first before anything else
-            //dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_RED);
-            //dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_ORANGE);
+            // Seem to need to do this first before any other graphic calls in this function
             dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_BLUE);
             dc.clear();
 
             // Test lines at extremes
-            if (showRules)
+            if (TEST_showRuleLines)
             {
                 dc.setColor(Graphics.COLOR_PINK, Graphics.COLOR_TRANSPARENT);
                 dc.clear();
@@ -108,13 +117,14 @@ class MyTestWatchFaceView extends WatchUi.WatchFace {
             //dc.drawText(screenWidth/2, screenHeight/2, Graphics.FONT_NUMBER_HOT, timeString, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
             dc.drawText(screenWidth/2, screenHeight/2 -50, Graphics.FONT_SYSTEM_NUMBER_THAI_HOT, timeString, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
  
-            dc.drawText(offset, offset, Graphics.FONT_SMALL, battery, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
-            dc.drawText(screenWidth-offset, offset, Graphics.FONT_SMALL, date, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
-            dc.drawText(offset, screenHeight-offset, Graphics.FONT_SMALL, steps, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
-            dc.drawText(screenWidth-offset, screenHeight-offset, Graphics.FONT_SMALL, heartRate, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
+            dc.drawText(WATCH_labelOffset, WATCH_labelOffset, Graphics.FONT_SMALL, battery, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
+            dc.drawText(screenWidth-WATCH_labelOffset, WATCH_labelOffset, Graphics.FONT_SMALL, date, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
+            dc.drawText(WATCH_labelOffset, screenHeight-WATCH_labelOffset, Graphics.FONT_SMALL, steps, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
+            dc.drawText(screenWidth-WATCH_labelOffset, screenHeight-WATCH_labelOffset, Graphics.FONT_SMALL, heartRate, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
         
-            if (showColorBoxes)
+            if (TEST_showColoredBoxes)
             {
+                // These are all the colours we know about
                 drawBox(dc, 10, 30, 15, Graphics.COLOR_BLACK);
                 drawBox(dc, 30, 30, 15, Graphics.COLOR_BLUE);
                 drawBox(dc, 50, 30, 15, Graphics.COLOR_DK_BLUE);
@@ -132,7 +142,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace {
                 drawBox(dc, 70, 60, 15, Graphics.COLOR_YELLOW);
             }
 
-            if (showAllLedDigits)
+            if (TEST_showAllLedDigits)
             {
                 drawLED(dc, 0, 10, 100);
                 drawLED(dc, 1, 60, 100);
@@ -148,16 +158,11 @@ class MyTestWatchFaceView extends WatchUi.WatchFace {
             else
             {
                 var x as Lang.Number = 40;
-                //System.println("timeString = " + timeString + ", length = " + timeString.length());
                 var timeArr as Lang.Array = timeString.toCharArray();
-                //System.println("timeArr = " + timeArr + ", size = " + timeArr.size());
                 for (var i=0; i<timeArr.size(); i++)
                 {
-                    //System.println("i = " + i);
                     var asciiChar as Lang.Number = timeArr[i].toNumber();
-                    //System.println("asciiChar = " + asciiChar);
                     var digit as Lang.Number = asciiChar - 48; // Subtract 48 from ASCII code to get the digit
-                    //System.println("digit = " + digit);
                     if (digit >= 0 && digit <= 9) // Only draw the digits, nothing else
                     {
                         drawLED(dc, digit, x, 100);
@@ -181,24 +186,32 @@ class MyTestWatchFaceView extends WatchUi.WatchFace {
     function drawLED(dc as Dc, digit as Lang.Number, x, y) as Void
     {
         System.println("drawLED: digit " + digit);
-        var w as Lang.Number = 20;
-        var h as Lang.Number = 40;
-        var angleDeg as Lang.Float = 8.0;
-        var angleRad as Lang.Float = (2*Math.PI)*(angleDeg/360.0);
-        var topOffs as Lang.Float = (Math.tan(angleRad)) * h;
-        var midOffs as Lang.Float = (Math.tan(angleRad)) * (h/2);
-        var showBoundingBox as Lang.Boolean = false; // If true, show bounding box around the LED
-
-        //System.println("topOffs " + topOffs);
-        //System.println("midOffs " + midOffs);
-
-        if (showBoundingBox)
+        if (LED_showBoundingBox)
         {
             dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_TRANSPARENT);
             dc.setPenWidth(1);
-            dc.drawRectangle(x, y, w, h);
+            dc.drawRectangle(x, y, LED_width, LED_height);
         }
 
+        /*
+            The LED digit segments:
+
+                o   ___a___
+                   |       |
+                  f       b
+                  |       |
+                  ---g---
+                 |       |
+                e       c
+                |       |
+                 ---d---
+
+                o = (x,y) the top left corner
+                Size is LED_width x LED_height
+                Top segment is offset by LED_topOffs
+                Middle segment is offset by LED_midOffs
+                The segment offsets are computed from LED_angleDeg, the angle of the lean
+        */
         var aSegment as Lang.Boolean = false;
         var bSegment as Lang.Boolean = false;
         var cSegment as Lang.Boolean = false;
@@ -207,129 +220,147 @@ class MyTestWatchFaceView extends WatchUi.WatchFace {
         var fSegment as Lang.Boolean = false;
         var gSegment as Lang.Boolean = false;
 
-        if (digit == 0)
+        switch (digit)
         {
-            aSegment = true;
-            bSegment = true;
-            cSegment = true;
-            dSegment = true;
-            eSegment = true;
-            fSegment = true;
-            gSegment = false;
-        }
-        else if (digit == 1)
-        {
-            aSegment = false;
-            bSegment = true;
-            cSegment = true;
-            dSegment = false;
-            eSegment = false;
-            fSegment = false;
-            gSegment = false;
-        }
-        else if (digit == 2)
-        {
-            aSegment = true;
-            bSegment = true;
-            cSegment = false;
-            dSegment = true;
-            eSegment = true;
-            fSegment = false;
-            gSegment = true;
-        }
-        else if (digit == 3)
-        {
-            aSegment = true;
-            bSegment = true;
-            cSegment = true;
-            dSegment = true;
-            eSegment = false;
-            fSegment = false;
-            gSegment = true;
-        }
-        else if (digit == 4)
-        {
-            aSegment = false;
-            bSegment = true;
-            cSegment = true;
-            dSegment = false;
-            eSegment = false;
-            fSegment = true;
-            gSegment = true;
-        }
-        else if (digit == 5)
-        {
-            aSegment = true;
-            bSegment = false;
-            cSegment = true;
-            dSegment = true;
-            eSegment = false;
-            fSegment = true;
-            gSegment = true;
-        }
-        else if (digit == 6)
-        {
-            aSegment = true;
-            bSegment = false;
-            cSegment = true;
-            dSegment = true;
-            eSegment = true;
-            fSegment = true;
-            gSegment = true;
-        }
-        else if (digit == 7)
-        {
-            aSegment = true;
-            bSegment = true;
-            cSegment = true;
-            dSegment = false;
-            eSegment = false;
-            fSegment = false;
-            gSegment = false;
-        }
-        else if (digit == 8)
-        {
-            aSegment = true;
-            bSegment = true;
-            cSegment = true;
-            dSegment = true;
-            eSegment = true;
-            fSegment = true;
-            gSegment = true;
-        }
-        else if (digit == 9)
-        {
-            aSegment = true;
-            bSegment = true;
-            cSegment = true;
-            dSegment = true;
-            eSegment = false;
-            fSegment = true;
-            gSegment = true;
+            case 0:
+            {
+                aSegment = true;
+                bSegment = true;
+                cSegment = true;
+                dSegment = true;
+                eSegment = true;
+                fSegment = true;
+                gSegment = false;
+                break;
+            }
+            case 1:
+            {
+                aSegment = false;
+                bSegment = true;
+                cSegment = true;
+                dSegment = false;
+                eSegment = false;
+                fSegment = false;
+                gSegment = false;
+                break;
+            }
+            case 2:
+            {
+                aSegment = true;
+                bSegment = true;
+                cSegment = false;
+                dSegment = true;
+                eSegment = true;
+                fSegment = false;
+                gSegment = true;
+                break;
+            }
+            case 3:
+            {
+                aSegment = true;
+                bSegment = true;
+                cSegment = true;
+                dSegment = true;
+                eSegment = false;
+                fSegment = false;
+                gSegment = true;
+                break;
+            }
+            case 4:
+            {
+                aSegment = false;
+                bSegment = true;
+                cSegment = true;
+                dSegment = false;
+                eSegment = false;
+                fSegment = true;
+                gSegment = true;
+                break;
+            }
+            case 5:
+            {
+                aSegment = true;
+                bSegment = false;
+                cSegment = true;
+                dSegment = true;
+                eSegment = false;
+                fSegment = true;
+                gSegment = true;
+                break;
+            }
+            case 6:
+            {
+                aSegment = true;
+                bSegment = false;
+                cSegment = true;
+                dSegment = true;
+                eSegment = true;
+                fSegment = true;
+                gSegment = true;
+                break;
+            }
+            case 7:
+            {
+                aSegment = true;
+                bSegment = true;
+                cSegment = true;
+                dSegment = false;
+                eSegment = false;
+                fSegment = false;
+                gSegment = false;
+                break;
+            }
+            case 8:
+            {
+                aSegment = true;
+                bSegment = true;
+                cSegment = true;
+                dSegment = true;
+                eSegment = true;
+                fSegment = true;
+                gSegment = true;
+                break;
+            }
+            case 9:
+            {
+                aSegment = true;
+                bSegment = true;
+                cSegment = true;
+                dSegment = true;
+                eSegment = false;
+                fSegment = true;
+                gSegment = true;
+                break;
+            }
+            default:
+            {
+                System.println("Invalid digit: " + digit);  
+                break;         
+            }
         }
 
         dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
         dc.setPenWidth(5);
         if (aSegment) {
-             dc.drawLine(x+topOffs, y, x+w+topOffs, y); // a
+             dc.drawLine(x+LED_topOffs, y, x+LED_width+LED_topOffs, y); // a
         }
         if (bSegment) {
-            dc.drawLine(x+w+topOffs, y, x+w+midOffs, y+(h/2)); // b
+            dc.drawLine(x+LED_width+LED_topOffs, y, x+LED_width+LED_midOffs, y+(LED_height/2)); // b
         }
         if (cSegment) {
-            dc.drawLine(x+w+midOffs, y+(h/2), x+w, y+h); // c
+            dc.drawLine(x+LED_width+LED_midOffs, y+(LED_height/2), x+LED_width, y+LED_height); // c
         }
         if (dSegment) {
-            dc.drawLine(x, y+h, x+w, y+h); // d
+            dc.drawLine(x, y+LED_height, x+LED_width, y+LED_height); // d
         }
         if (eSegment) {
-            dc.drawLine(x, y+h, x+midOffs, y+(h/2)); // e
+            dc.drawLine(x, y+LED_height, x+LED_midOffs, y+(LED_height/2)); // e
         }
         if (fSegment) {
-            dc.drawLine(x+midOffs, y+(h/2), x+topOffs, y); // f
+            dc.drawLine(x+LED_midOffs, y+(LED_height/2), x+LED_topOffs, y); // f
         }
         if (gSegment) {
-            dc.drawLine(x+midOffs, y+(h/2), x+w+midOffs, y+(h/2)); // g
+            dc.drawLine(x+LED_midOffs, y+(LED_height/2), x+LED_width+LED_midOffs, y+(LED_height/2)); // g
         }
     }
 
