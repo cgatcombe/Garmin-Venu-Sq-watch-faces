@@ -91,7 +91,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
             var screenHeight as Lang.Number = dc.getHeight();
 
             // Seem to need to do this first before any other graphic calls in this function
-            dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_BLUE);
+            dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_BLACK);
             dc.clear();
 
             // Test lines at extremes
