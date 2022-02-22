@@ -16,6 +16,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
     //var screenHeight as Lang.Number = dc.getHeight();
 
     // Constants for the LED digital display
+    const LED_spacing as Lang.Number = 50; // Spacing between LED digits
     const LED_angleDeg as Lang.Float = 8.0;
     const LED_angleRad as Lang.Float = (2*Math.PI)*(LED_angleDeg/360.0);
     const LED_width as Lang.Number = 20;
@@ -132,16 +133,18 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
 
             if (TEST_showAllLedDigits)
             {
-                drawLED(dc, 0, 10, 100);
-                drawLED(dc, 1, 60, 100);
-                drawLED(dc, 2, 110, 100);
-                drawLED(dc, 3, 160, 100);
-                drawLED(dc, 4, 210, 100);
-                drawLED(dc, 5, 10, 160);
-                drawLED(dc, 6, 60, 160);
-                drawLED(dc, 7, 110, 160);
-                drawLED(dc, 8, 160, 160);
-                drawLED(dc, 9, 210, 160);
+                var x as Lang.Number = 10;
+                drawLED(dc, 0, x, 100); x+=LED_spacing;
+                drawLED(dc, 1, x, 100); x+=LED_spacing;
+                drawLED(dc, 2, x, 100); x+=LED_spacing;
+                drawLED(dc, 3, x, 100); x+=LED_spacing;
+                drawLED(dc, 4, x, 100);
+                x = 10;
+                drawLED(dc, 5, x, 160); x+=LED_spacing;
+                drawLED(dc, 6, x, 160); x+=LED_spacing;
+                drawLED(dc, 7, x, 160); x+=LED_spacing;
+                drawLED(dc, 8, x, 160); x+=LED_spacing;
+                drawLED(dc, 9, x, 160);
             }
             else
             {
@@ -149,6 +152,12 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
                 {
                     var x as Lang.Number = 40;
                     var timeArr as Lang.Array = timeString.toCharArray();
+                    // If only 4 characyers, then there is only a single hour digit; shift accordingly
+                    // to make display look better positioned
+                    if (timeArr.size() == 4)
+                    {
+                        x+=LED_spacing;
+                    }
                     for (var i=0; i<timeArr.size(); i++)
                     {
                         var asciiChar as Lang.Number = timeArr[i].toNumber();
@@ -163,7 +172,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
                             if (digit >= 0 && digit <= 9) // Only draw the digits, nothing else
                             {
                                 drawLED(dc, digit, x, 100);
-                                x+=50;
+                                x+=LED_spacing;
                             }
                         }
                     }
@@ -411,7 +420,8 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
 
         // get ActivityMonitor info
         var info as Lang.ActivityMonitor.Info = ActivityMonitor.getInfo();
-        //var steps = info.steps;
+        var steps as Lang.Number = info.steps;
+        return steps.toString();
         //var calories = info.calories;
 
 
@@ -422,8 +432,9 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
         //var x = info.steps.size();
         //var y = Toybox.Sensor.info;
 
+
         //return x;
-        return "--";
+        //return "--";
     }
 
     function getDate() as Lang.String
