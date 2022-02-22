@@ -11,6 +11,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
     const WATCH_useInbuiltSensors as Lang.Boolean = false; // If true, use sensors (doesn't work yet)
     const WATCH_useViewsAndLayout as Lang.Boolean = false; // If true, use views and layout defined in layout.xml; otherwise draw graphics directly
     const WATCH_labelOffset as Lang.Number = 15; // For graphic text drawing
+    const WATCH_showTimeWithLeds as Lang.Boolean = true; // True for LED display; false for string
     //var screenWidth as Lang.Number = dc.getWidth();
     //var screenHeight as Lang.Number = dc.getHeight();
 
@@ -106,22 +107,9 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
             }
 
             // test draw line
-            dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-            dc.setPenWidth(5);
-            //dc.drawLine(5,5,25,25);
-            //dc.drawRectangle(50, 50, 150, 100);
-            //dc.drawText(100, 100, System.Graphics.FONT_SMALL, "test123", Graphics.TEXT_JUSTIFY_CENTER);
-        
-            //dc.drawText(screenWidth/2, screenHeight/2, Graphics.FONT_GLANCE_NUMBER, timeString, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-            //dc.drawText(screenWidth/2, screenHeight/2, Graphics.FONT_LARGE, timeString, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-            //dc.drawText(screenWidth/2, screenHeight/2, Graphics.FONT_NUMBER_HOT, timeString, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-            dc.drawText(screenWidth/2, screenHeight/2 -50, Graphics.FONT_SYSTEM_NUMBER_THAI_HOT, timeString, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
- 
-            dc.drawText(WATCH_labelOffset, WATCH_labelOffset, Graphics.FONT_SMALL, battery, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
-            dc.drawText(screenWidth-WATCH_labelOffset, WATCH_labelOffset, Graphics.FONT_SMALL, date, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
-            dc.drawText(WATCH_labelOffset, screenHeight-WATCH_labelOffset, Graphics.FONT_SMALL, steps, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
-            dc.drawText(screenWidth-WATCH_labelOffset, screenHeight-WATCH_labelOffset, Graphics.FONT_SMALL, heartRate, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
-        
+            //dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+            //dc.setPenWidth(5);        
+       
             if (TEST_showColoredBoxes)
             {
                 // These are all the colours we know about
@@ -157,19 +145,41 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
             }
             else
             {
-                var x as Lang.Number = 40;
-                var timeArr as Lang.Array = timeString.toCharArray();
-                for (var i=0; i<timeArr.size(); i++)
+                if (WATCH_showTimeWithLeds)
                 {
-                    var asciiChar as Lang.Number = timeArr[i].toNumber();
-                    var digit as Lang.Number = asciiChar - 48; // Subtract 48 from ASCII code to get the digit
-                    if (digit >= 0 && digit <= 9) // Only draw the digits, nothing else
+                    var x as Lang.Number = 40;
+                    var timeArr as Lang.Array = timeString.toCharArray();
+                    for (var i=0; i<timeArr.size(); i++)
                     {
-                        drawLED(dc, digit, x, 100);
-                        x+=50;
+                        var asciiChar as Lang.Number = timeArr[i].toNumber();
+                        if (asciiChar == ':')
+                        {
+                            // Need to fine tune x position here
+                            drawColon(dc, x-12, 100);
+                        }
+                        else
+                        {
+                            var digit as Lang.Number = asciiChar - 48; // Subtract 48 from ASCII code to get the digit
+                            if (digit >= 0 && digit <= 9) // Only draw the digits, nothing else
+                            {
+                                drawLED(dc, digit, x, 100);
+                                x+=50;
+                            }
+                        }
                     }
                 }
+                else 
+                {
+                    dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
+                    dc.drawText(screenWidth/2, screenHeight/2, Graphics.FONT_SYSTEM_NUMBER_THAI_HOT, timeString, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+                }
             }
+
+            dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+            dc.drawText(WATCH_labelOffset, WATCH_labelOffset, Graphics.FONT_SMALL, battery, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
+            dc.drawText(screenWidth-WATCH_labelOffset, WATCH_labelOffset, Graphics.FONT_SMALL, date, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
+            dc.drawText(WATCH_labelOffset, screenHeight-WATCH_labelOffset, Graphics.FONT_SMALL, steps, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
+            dc.drawText(screenWidth-WATCH_labelOffset, screenHeight-WATCH_labelOffset, Graphics.FONT_SMALL, heartRate, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
         }
     }
 
@@ -181,6 +191,13 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
         //dc.drawRectangle(x, y, size, size);
         // Draw filled box
         dc.fillRectangle(x, y, size, size);
+    }
+
+    function drawColon(dc as Dc, x, y) as Void
+    {
+        // Need to fine tune the positions of each dot
+        dc.fillCircle(x, y+15, 4);
+        dc.fillCircle(x-2, y+30, 4);
     }
 
     function drawLED(dc as Dc, digit as Lang.Number, x, y) as Void
