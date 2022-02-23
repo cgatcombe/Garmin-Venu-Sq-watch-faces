@@ -12,6 +12,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
     const WATCH_useViewsAndLayout as Lang.Boolean = false; // If true, use views and layout defined in layout.xml; otherwise draw graphics directly
     const WATCH_labelOffset as Lang.Number = 15; // For graphic text drawing
     const WATCH_showTimeWithLeds as Lang.Boolean = true; // True for LED display; false for string
+    const WATCH_showBackgroundBitmap as Lang.Boolean = false; // True to show bitmap
     //var screenWidth as Lang.Number = dc.getWidth();
     //var screenHeight as Lang.Number = dc.getHeight();
 
@@ -30,9 +31,13 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
     const TEST_showColoredBoxes as Lang.Boolean = false; // If true, shows boxes with all the colours for testing
     const TEST_showAllLedDigits as Lang.Boolean = false; // If true, show all LED digits; if false show time
 
+    var bitmap;
+
     function initialize()
     {
         WatchFace.initialize();
+
+        bitmap=WatchUi.loadResource(Rez.Drawables.BackgroundPNG);
 
         if (WATCH_useInbuiltSensors)
         {
@@ -95,6 +100,11 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
             // Seem to need to do this first before any other graphic calls in this function
             dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_BLACK);
             dc.clear();
+
+            if (WATCH_showBackgroundBitmap)
+            {
+		        dc.drawBitmap(0, 0, bitmap);
+            }
 
             // Test lines at extremes
             if (TEST_showRuleLines)
