@@ -15,6 +15,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
     const WATCH_showBackgroundBitmap as Lang.Boolean = false; // True to show bitmap
     const WATCH_24HourMode as Lang.Boolean = false; // True for 24hr display; false for 12 hour display (though no am/pm indicator)
     const WATCH_showMonth as Lang.Boolean = true; // False just shows Day/Date; true additionally shows Month
+    const WATCH_showBatteryAsIcon as Lang.Boolean = true; // True shows icon with percent; false just shows percent
     //var screenWidth as Lang.Number = dc.getWidth();
     //var screenHeight as Lang.Number = dc.getHeight();
 
@@ -77,7 +78,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
     {
         // Get and show the current time and other items of interest
         var time as Lang.String = getTime();
-        var battery as Lang.String = getBattery();
+        var battery as Lang.Number = getBattery();
         var date as Lang.String = getDate();
         var steps as Lang.String = getSteps();
         var heartRate as Lang.String = getHeartRate();
@@ -212,7 +213,15 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
             }
 
             dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(WATCH_labelOffset, WATCH_labelOffset, Graphics.FONT_SMALL, battery, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
+            if (WATCH_showBatteryAsIcon)
+            {
+                drawBattery(dc, WATCH_labelOffset, WATCH_labelOffset, battery);
+            }
+            else 
+            {
+                var batStr as Lang.String = Lang.format( "$1$%", [ battery.format( "%2d" ) ] ); 
+                dc.drawText(WATCH_labelOffset, WATCH_labelOffset, Graphics.FONT_SMALL, batStr, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
+            }
             dc.drawText(screenWidth-WATCH_labelOffset, WATCH_labelOffset, Graphics.FONT_SMALL, date, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
             if (WATCH_showMonth)
             {
@@ -232,6 +241,37 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
         //dc.drawRectangle(x, y, size, size);
         // Draw filled box
         dc.fillRectangle(x, y, size, size);
+    }
+
+    function drawBattery(dc as Dc, x, y, percent) as Void 
+    {
+        var w as Lang.Number = 50;
+        var h as Lang.Number = 30;
+        var t1 as Lang.Number = 8;
+        var t2 as Lang.Number = 4;
+        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+        dc.setPenWidth(2);
+        dc.drawLine(x,      y,      x+w,    y);
+        dc.drawLine(x+w,    y,      x+w,    y+t1);
+        dc.drawLine(x+w,    y+t1,   x+w+t2, y+t1);
+        dc.drawLine(x+w+t2, y+t1,   x+w+t2, y+h-t1);
+        dc.drawLine(x+w+t2, y+h-t1, x+w,    y+h-t1);
+        dc.drawLine(x+w,    y+h-t1, x+w,    y+h);
+        dc.drawLine(x+w,    y+h,    x,      y+h);
+        dc.drawLine(x,      y+h,    x,      y);
+
+        var width as Lang.Number = (w-4)*percent/100;
+        var color = Graphics.COLOR_DK_GREEN;
+        if (percent<15)
+        {
+            color = Graphics.COLOR_RED; 
+        }
+        dc.setColor(color, Graphics.COLOR_TRANSPARENT);
+        dc.fillRectangle(x+2, y+2, width, h-4);
+    
+        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+        var percentStr as Lang.String = Lang.format( "$1$%", [ percent.format( "%2d" ) ] );  
+        dc.drawText(x+4, y+h/2, Graphics.FONT_SMALL, percentStr, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
     }
 
     function drawColon(dc as Dc, x, y) as Void
@@ -448,12 +488,11 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
         return previous.heartRate.format("%02d");
     }
 
-    function getBattery() as Lang.String
+    function getBattery() as Lang.Number
     {
         var stats as Lang.Stats = System.getSystemStats();
-        var pwr as Lang.Float = stats.battery;
-        var batStr as Lang.String = Lang.format( "$1$%", [ pwr.format( "%2d" ) ] );
-        return batStr;
+        var pwr as Lang.Number = stats.battery;
+        return pwr;
     }
 
     function getSteps() as Lang.String
