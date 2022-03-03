@@ -163,7 +163,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
                 {
                     var x as Lang.Number = 40;
                     var timeArr as Lang.Array = time.toCharArray();
-                    // If only 4 characyers, then there is only a single hour digit; shift accordingly
+                    // If only 4 characters, then there is only a single hour digit; shift accordingly
                     // to make display look better positioned
                     if (timeArr.size() == 4)
                     {
