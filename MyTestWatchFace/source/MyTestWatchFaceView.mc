@@ -14,6 +14,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
     const WATCH_showTimeWithLeds as Lang.Boolean = true; // True for LED display; false for string
     const WATCH_showBackgroundBitmap as Lang.Boolean = false; // True to show bitmap
     const WATCH_24HourMode as Lang.Boolean = false; // True for 24hr display; false for 12 hour display (though no am/pm indicator)
+    const WATCH_showMonth as Lang.Boolean = true; // False just shows Day/Date; true additionally shows Month
     //var screenWidth as Lang.Number = dc.getWidth();
     //var screenHeight as Lang.Number = dc.getHeight();
 
@@ -197,6 +198,11 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
             dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
             dc.drawText(WATCH_labelOffset, WATCH_labelOffset, Graphics.FONT_SMALL, battery, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
             dc.drawText(screenWidth-WATCH_labelOffset, WATCH_labelOffset, Graphics.FONT_SMALL, date, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
+            if (WATCH_showMonth)
+            {
+                var month = getMonth();
+                dc.drawText(screenWidth-WATCH_labelOffset, WATCH_labelOffset+20, Graphics.FONT_SMALL, month, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
+            }
             dc.drawText(WATCH_labelOffset, screenHeight-WATCH_labelOffset, Graphics.FONT_SMALL, steps, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
             dc.drawText(screenWidth-WATCH_labelOffset, screenHeight-WATCH_labelOffset, Graphics.FONT_SMALL, heartRate, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
         }
@@ -448,6 +454,14 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
         var info as Lang.Time.Gre.Info = Gregorian.info(now, Time.FORMAT_LONG);
         var dateStr as Lang.String = Lang.format("$1$ $2$", [info.day_of_week, info.day]);
         return dateStr;
+    }
+
+    function getMonth() as Lang.String
+    {
+        var now as Lang.Time.Moment = Time.now();
+        var info as Lang.Time.Gre.Info = Gregorian.info(now, Time.FORMAT_LONG);
+        var monthStr as Lang.String = Lang.format("$1$", [info.month]);
+        return monthStr;
     }
 
     function onSensor(sensorInfo) as Void
