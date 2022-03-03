@@ -19,13 +19,13 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
     //var screenHeight as Lang.Number = dc.getHeight();
 
     // Constants for the LED digital display
-    const LED_spacing as Lang.Number = 50; // Spacing between LED digits
+    var LED_spacing as Lang.Number = 50; // Spacing between LED digits
     const LED_angleDeg as Lang.Float = 8.0;
     const LED_angleRad as Lang.Float = (2*Math.PI)*(LED_angleDeg/360.0);
-    const LED_width as Lang.Number = 20;
-    const LED_height as Lang.Number = 40;
-    const LED_topOffs as Lang.Float = (Math.tan(LED_angleRad)) * LED_height;
-    const LED_midOffs as Lang.Float = (Math.tan(LED_angleRad)) * (LED_height/2);
+    var LED_width as Lang.Number = 20;
+    var LED_height as Lang.Number = 40;
+    var LED_topOffs as Lang.Float = (Math.tan(LED_angleRad)) * LED_height;
+    var LED_midOffs as Lang.Float = (Math.tan(LED_angleRad)) * (LED_height/2);
     const LED_showBoundingBox as Lang.Boolean = false; // If true, show bounding box around the LED
 
     // Constants for enabling/disabling test functions 
@@ -38,6 +38,16 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
     function initialize()
     {
         WatchFace.initialize();
+
+        // Use bigger LEDs in 12 hour mode
+        if (!WATCH_24HourMode)
+        {
+            LED_width = 30;
+            LED_height = LED_width*2;
+            LED_spacing  = LED_width*2;
+        }
+        LED_topOffs = (Math.tan(LED_angleRad)) * LED_height;
+        LED_midOffs = (Math.tan(LED_angleRad)) * (LED_height/2);
 
         bitmap=WatchUi.loadResource(Rez.Drawables.BackgroundPNG);
 
@@ -162,6 +172,12 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
                 if (WATCH_showTimeWithLeds)
                 {
                     var x as Lang.Number = 40;
+                    var y as Lang.Number = 100;
+                    if (!WATCH_24HourMode)
+                    {
+                        x = 1;
+                        y = 90;
+                    }
                     var timeArr as Lang.Array = time.toCharArray();
                     // If only 4 characters, then there is only a single hour digit; shift accordingly
                     // to make display look better positioned
@@ -175,14 +191,14 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
                         if (asciiChar == ':')
                         {
                             // Need to fine tune x position here
-                            drawColon(dc, x-12, 100);
+                            drawColon(dc, x-12, y);
                         }
                         else
                         {
                             var digit as Lang.Number = asciiChar - 48; // Subtract 48 from ASCII code to get the digit
                             if (digit >= 0 && digit <= 9) // Only draw the digits, nothing else
                             {
-                                drawLED(dc, digit, x, 100);
+                                drawLED(dc, digit, x, y);
                                 x+=LED_spacing;
                             }
                         }
@@ -221,8 +237,8 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
     function drawColon(dc as Dc, x, y) as Void
     {
         // Need to fine tune the positions of each dot
-        dc.fillCircle(x, y+15, 4);
-        dc.fillCircle(x-2, y+30, 4);
+        dc.fillCircle(x, y+LED_height/2-15, 4);
+        dc.fillCircle(x-2, y+LED_height/2+15, 4);
     }
 
     function drawLED(dc as Dc, digit as Lang.Number, x, y) as Void
