@@ -13,6 +13,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
     const WATCH_labelOffset as Lang.Number = 15; // For graphic text drawing
     const WATCH_showTimeWithLeds as Lang.Boolean = true; // True for LED display; false for string
     const WATCH_showBackgroundBitmap as Lang.Boolean = false; // True to show bitmap
+    const WATCH_24HourMode as Lang.Boolean = false; // True for 24hr display; false for 12 hour display (though no am/pm indicator)
     //var screenWidth as Lang.Number = dc.getWidth();
     //var screenHeight as Lang.Number = dc.getHeight();
 
@@ -64,8 +65,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
     function onUpdate(dc as Dc) as Void
     {
         // Get and show the current time and other items of interest
-        var clockTime as Lang.ClockTime = System.getClockTime();
-        var timeString as Lang.String = Lang.format("$1$:$2$", [clockTime.hour, clockTime.min.format("%02d")]);
+        var time as Lang.String = getTime();
         var battery as Lang.String = getBattery();
         var date as Lang.String = getDate();
         var steps as Lang.String = getSteps();
@@ -74,7 +74,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
         if (WATCH_useViewsAndLayout)
         {
             var view as Lang.View = View.findDrawableById("TimeLabel") as Text;
-            view.setText(timeString);
+            view.setText(time);
 
             var view2 as Lang.View = View.findDrawableById("TopLeft") as Text;
             view2.setText("B: " + battery);
@@ -161,7 +161,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
                 if (WATCH_showTimeWithLeds)
                 {
                     var x as Lang.Number = 40;
-                    var timeArr as Lang.Array = timeString.toCharArray();
+                    var timeArr as Lang.Array = time.toCharArray();
                     // If only 4 characyers, then there is only a single hour digit; shift accordingly
                     // to make display look better positioned
                     if (timeArr.size() == 4)
@@ -190,7 +190,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
                 else 
                 {
                     dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
-                    dc.drawText(screenWidth/2, screenHeight/2, Graphics.FONT_SYSTEM_NUMBER_THAI_HOT, timeString, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+                    dc.drawText(screenWidth/2, screenHeight/2, Graphics.FONT_SYSTEM_NUMBER_THAI_HOT, time, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
                 }
             }
 
@@ -400,6 +400,21 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
         }
     }
 
+    function getTime() as Lang.String
+    {
+        var clockTime as Lang.ClockTime = System.getClockTime();
+        var hour as Lang.Number = clockTime.hour;
+        if (!WATCH_24HourMode)
+        {
+            if (hour>12)
+            {
+                hour -= 12;
+            }
+        }
+        var timeStr as Lang.String = Lang.format("$1$:$2$", [hour, clockTime.min.format("%02d")]);
+        return timeStr;
+    }
+
     function getHeartRate() as Lang.String
     {
         var hrIterator as Lang.HeartRateIterator = ActivityMonitor.getHeartRateHistory(1, true);
@@ -421,30 +436,10 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
 
     function getSteps() as Lang.String
     {
-        var stats as Lang.System.Stats = System.getSystemStats();
-        //var steps = stats.stepCount;
-        //var steps = stats.steps;
-        //var steps = stats.step;
-
-        //var steps = stats.distance; //.steps;
-
         // get ActivityMonitor info
         var info as Lang.ActivityMonitor.Info = ActivityMonitor.getInfo();
         var steps as Lang.Number = info.steps;
         return steps.toString();
-        //var calories = info.calories;
-
-
-
-        //var steps = Activity.info.steps;
-        //var z = Activity.info;
-        //var steps =info.steps[0];
-        //var x = info.steps.size();
-        //var y = Toybox.Sensor.info;
-
-
-        //return x;
-        //return "--";
     }
 
     function getDate() as Lang.String
