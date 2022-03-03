@@ -245,7 +245,15 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
 
     function drawBattery(dc as Dc, x, y, percent) as Void 
     {
-        var w as Lang.Number = 50;
+        /*
+                             > t1 < 
+              ________________
+           ^ |      < w >     |_  v
+           h |                 _| t2
+           v |________________|   ^
+
+        */
+        var w as Lang.Number = 55;
         var h as Lang.Number = 30;
         var t1 as Lang.Number = 8;
         var t2 as Lang.Number = 4;
