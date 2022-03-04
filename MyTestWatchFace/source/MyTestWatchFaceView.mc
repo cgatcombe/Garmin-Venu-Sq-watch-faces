@@ -16,6 +16,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
     const WATCH_24HourMode as Lang.Boolean = false; // True for 24hr display; false for 12 hour display (though no am/pm indicator)
     const WATCH_showMonth as Lang.Boolean = true; // False just shows Day/Date; true additionally shows Month
     const WATCH_showBatteryAsIcon as Lang.Boolean = true; // True shows icon with percent; false just shows percent
+    const WATCH_showHeartAsIcon as Lang.Boolen = true; // True shows icon with heart rate; false shows without icon
     //var screenWidth as Lang.Number = dc.getWidth();
     //var screenHeight as Lang.Number = dc.getHeight();
 
@@ -35,6 +36,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
     const TEST_showAllLedDigits as Lang.Boolean = false; // If true, show all LED digits; if false show time
 
     var bitmap;
+    var heartBitmap;
 
     function initialize()
     {
@@ -50,7 +52,15 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
         LED_topOffs = (Math.tan(LED_angleRad)) * LED_height;
         LED_midOffs = (Math.tan(LED_angleRad)) * (LED_height/2);
 
-        bitmap=WatchUi.loadResource(Rez.Drawables.BackgroundPNG);
+        if (WATCH_showBackgroundBitmap)
+        {
+            bitmap=WatchUi.loadResource(Rez.Drawables.BackgroundPNG);
+        }
+
+        if (WATCH_showHeartAsIcon)
+        {
+            heartBitmap=WatchUi.loadResource(Rez.Drawables.HeartPNG);
+        }
 
         if (WATCH_useInbuiltSensors)
         {
@@ -232,7 +242,18 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
                 dc.drawText(screenWidth-WATCH_labelOffset, WATCH_labelOffset+20, Graphics.FONT_SMALL, month, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
             }
             dc.drawText(WATCH_labelOffset, screenHeight-WATCH_labelOffset, Graphics.FONT_SMALL, steps, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
-            dc.drawText(screenWidth-WATCH_labelOffset, screenHeight-WATCH_labelOffset, Graphics.FONT_SMALL, heartRate, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
+            
+            if (WATCH_showHeartAsIcon)
+            {
+                var bmpW as Lang.Number = heartBitmap.getWidth();
+                var bmpH as Lang.Number = heartBitmap.getHeight();
+                dc.drawBitmap(screenWidth-bmpW, screenHeight-bmpH, heartBitmap);
+                dc.drawText(screenWidth-WATCH_labelOffset, screenHeight-WATCH_labelOffset-10, Graphics.FONT_SMALL, heartRate, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
+            }
+            else
+            {
+                dc.drawText(screenWidth-WATCH_labelOffset, screenHeight-WATCH_labelOffset, Graphics.FONT_SMALL, heartRate, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
+            }
         }
     }
 

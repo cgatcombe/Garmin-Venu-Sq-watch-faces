@@ -1,4 +1,5 @@
 <drawables>
     <bitmap id="LauncherIcon" filename="launcher_icon.png" />
     <bitmap id="BackgroundPNG" filename="background.png" />
+    <bitmap id="HeartPNG" filename="heart_50x50.png" />
 </drawables>
