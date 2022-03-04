@@ -215,7 +215,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
             dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
             if (WATCH_showBatteryAsIcon)
             {
-                drawBattery(dc, WATCH_labelOffset, WATCH_labelOffset, battery);
+                drawBattery(dc, WATCH_labelOffset, WATCH_labelOffset/2+5, battery);
             }
             else 
             {
@@ -276,10 +276,14 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
         }
         dc.setColor(color, Graphics.COLOR_TRANSPARENT);
         dc.fillRectangle(x+2, y+2, width, h-4);
-    
+        if (percent>99)
+        {
+            dc.fillRectangle(x+w-2, y+t1+2, t2, t1+2);
+        }    
+
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         var percentStr as Lang.String = Lang.format( "$1$%", [ percent.format( "%2d" ) ] );  
-        dc.drawText(x+4, y+h/2, Graphics.FONT_SMALL, percentStr, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
+        dc.drawText(x+4, y+h/2-1, Graphics.FONT_SMALL, percentStr, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
     }
 
     function drawColon(dc as Dc, x, y) as Void
