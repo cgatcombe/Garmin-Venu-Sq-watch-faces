@@ -2,5 +2,6 @@
     <bitmap id="LauncherIcon" filename="launcher_icon.png" />
     <bitmap id="BackgroundPNG" filename="background.png" />
     <bitmap id="HeartPNG" filename="heart_50x50.png" />
-    <bitmap id="FootprintsPNG" filename="footprints_50x50.png" />
+    <!--bitmap id="FootprintsPNG" filename="footprints_50x50.png" /-->
+    <bitmap id="FootprintsPNG" filename="footsteps_39x50.png" />
 </drawables>
