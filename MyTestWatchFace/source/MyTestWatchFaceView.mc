@@ -118,15 +118,18 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
 		        dc.drawBitmap(0, 0, bitmap);
             }
 
-            // Test lines at extremes
+            // Test lines at extremes (0-239, 0-239):
             if (TEST_showRuleLines)
             {
                 dc.setColor(Graphics.COLOR_PINK, Graphics.COLOR_TRANSPARENT);
                 dc.clear();
                 dc.setPenWidth(1);
-                dc.drawLine(0,0,   240,0);
-                dc.drawLine(0,120, 240,120);
-                dc.drawLine(0,239, 240,239);
+                dc.drawLine(0,0,   239,0);
+                dc.drawLine(0,120, 239,120);
+                dc.drawLine(0,239, 239,239);
+                dc.drawLine(0,0,   0,239);
+                dc.drawLine(120,0, 120,239);
+                dc.drawLine(239,0, 239,239);
             }
 
             // test draw line
@@ -172,7 +175,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
             {
                 if (WATCH_showTimeWithLeds)
                 {
-                    var x as Lang.Number = 40;
+                    var x as Lang.Number = 33;
                     var y as Lang.Number = 100;
                     if (!WATCH_24HourMode)
                     {
