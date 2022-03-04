@@ -17,6 +17,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
     const WATCH_showMonth as Lang.Boolean = true; // False just shows Day/Date; true additionally shows Month
     const WATCH_showBatteryAsIcon as Lang.Boolean = true; // True shows icon with percent; false just shows percent
     const WATCH_showHeartAsIcon as Lang.Boolen = true; // True shows icon with heart rate; false shows without icon
+    const WATCH_showStepsAsIcon as Lang.Boolen = true; // True shows icon with steps; false shows without icon
     //var screenWidth as Lang.Number = dc.getWidth();
     //var screenHeight as Lang.Number = dc.getHeight();
 
@@ -37,6 +38,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
 
     var bitmap;
     var heartBitmap;
+    var stepsBitmap;
 
     function initialize()
     {
@@ -60,6 +62,11 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
         if (WATCH_showHeartAsIcon)
         {
             heartBitmap=WatchUi.loadResource(Rez.Drawables.HeartPNG);
+        }
+
+        if (WATCH_showStepsAsIcon)
+        {
+            stepsBitmap=WatchUi.loadResource(Rez.Drawables.FootprintsPNG);
         }
 
         if (WATCH_useInbuiltSensors)
@@ -241,8 +248,19 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
                 var month = getMonth();
                 dc.drawText(screenWidth-WATCH_labelOffset, WATCH_labelOffset+20, Graphics.FONT_SMALL, month, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
             }
-            dc.drawText(WATCH_labelOffset, screenHeight-WATCH_labelOffset, Graphics.FONT_SMALL, steps, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
-            
+
+            if (WATCH_showStepsAsIcon)
+            {
+                var bmpW as Lang.Number = stepsBitmap.getWidth();
+                var bmpH as Lang.Number = stepsBitmap.getHeight();
+                dc.drawBitmap(0, screenHeight-bmpH, stepsBitmap);
+                dc.drawText(bmpW, screenHeight-WATCH_labelOffset-10, Graphics.FONT_SMALL, steps, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
+            }
+            else 
+            {
+                dc.drawText(WATCH_labelOffset, screenHeight-WATCH_labelOffset, Graphics.FONT_SMALL, steps, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
+            }
+
             if (WATCH_showHeartAsIcon)
             {
                 var bmpW as Lang.Number = heartBitmap.getWidth();
