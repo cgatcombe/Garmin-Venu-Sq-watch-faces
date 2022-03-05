@@ -100,6 +100,8 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
         var steps as Lang.String = getSteps();
         var heartRate as Lang.String = getHeartRate();
 
+        dc.setAntiAlias(true);
+        
         if (WATCH_useViewsAndLayout)
         {
             var view as Lang.View = View.findDrawableById("TimeLabel") as Text;
