@@ -9,7 +9,6 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
 {
     // Constants for main watch screen display
     const WATCH_useInbuiltSensors as Lang.Boolean = false; // If true, use sensors (doesn't work yet)
-    const WATCH_useViewsAndLayout as Lang.Boolean = false; // If true, use views and layout defined in layout.xml; otherwise draw graphics directly
     const WATCH_labelOffset as Lang.Number = 15; // For graphic text drawing
     const WATCH_showTimeWithLeds as Lang.Boolean = true; // True for LED display; false for string
     const WATCH_showBackgroundBitmap as Lang.Boolean = false; // True to show bitmap
@@ -32,7 +31,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
     const LED_showBoundingBox as Lang.Boolean = false; // If true, show bounding box around the LED
 
     // Constants for enabling/disabling test functions 
-    const TEST_showRuleLines as Lang.Boolean = false; // If true, display horizontal test lines for alignment checking
+    const TEST_showRuleLines as Lang.Boolean = false; // If true, display horizontal/vertical test lines for alignment checking
     const TEST_showColoredBoxes as Lang.Boolean = false; // If true, shows boxes with all the colours for testing
     const TEST_showAllLedDigits as Lang.Boolean = false; // If true, show all LED digits; if false show time
 
@@ -99,181 +98,153 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
         var date as Lang.String = getDate();
         var steps as Lang.String = getSteps();
         var heartRate as Lang.String = getHeartRate();
+      
+        // Screen size should be 240x240 (at least on Venu Sq)
+        var screenWidth as Lang.Number = dc.getWidth();
+        var screenHeight as Lang.Number = dc.getHeight();
 
+        // Seem to need to do these first before any other graphic calls in this function
+        dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_BLACK);
+        dc.clear();
         dc.setAntiAlias(true);
-        
-        if (WATCH_useViewsAndLayout)
+
+        // Call the parent onUpdate function to redraw the layout (makes all bitmaps visible)
+        View.onUpdate(dc);
+
+        // Now I can draw my own stuff on the display
+
+        if (WATCH_showBackgroundBitmap)
         {
-            var view as Lang.View = View.findDrawableById("TimeLabel") as Text;
-            view.setText(time);
+            dc.drawBitmap(0, 0, bitmap);
+        }
 
-            var view2 as Lang.View = View.findDrawableById("TopLeft") as Text;
-            view2.setText("B: " + battery);
+        // Test lines at extremes (0-239, 0-239):
+        if (TEST_showRuleLines)
+        {
+            dc.setColor(Graphics.COLOR_PINK, Graphics.COLOR_TRANSPARENT);
+            dc.clear();
+            dc.setPenWidth(1);
+            dc.drawLine(0,0,   239,0);
+            dc.drawLine(0,120, 239,120);
+            dc.drawLine(0,239, 239,239);
+            dc.drawLine(0,0,   0,239);
+            dc.drawLine(120,0, 120,239);
+            dc.drawLine(239,0, 239,239);
+        }       
+       
+        if (TEST_showColoredBoxes)
+        {
+            // These are all the colours we know about
+            drawBox(dc, 10, 30, 15, Graphics.COLOR_BLACK);
+            drawBox(dc, 30, 30, 15, Graphics.COLOR_BLUE);
+            drawBox(dc, 50, 30, 15, Graphics.COLOR_DK_BLUE);
+            drawBox(dc, 70, 30, 15, Graphics.COLOR_DK_GRAY);
+            drawBox(dc, 90, 30, 15, Graphics.COLOR_DK_GREEN);
+            drawBox(dc, 110, 30, 15, Graphics.COLOR_DK_RED);
+            drawBox(dc, 130, 30, 15, Graphics.COLOR_GREEN);
+            drawBox(dc, 150, 30, 15, Graphics.COLOR_LT_GRAY);
+            drawBox(dc, 170, 30, 15, Graphics.COLOR_ORANGE);
+            drawBox(dc, 190, 30, 15, Graphics.COLOR_PINK);
+            drawBox(dc, 210, 30, 15, Graphics.COLOR_PURPLE);
+            drawBox(dc, 10, 60, 15, Graphics.COLOR_RED);
+            drawBox(dc, 30, 60, 15, Graphics.COLOR_TRANSPARENT);
+            drawBox(dc, 50, 60, 15, Graphics.COLOR_WHITE);
+            drawBox(dc, 70, 60, 15, Graphics.COLOR_YELLOW);
+        }
 
-            var view3 as Lang.View = View.findDrawableById("TopRight") as Text;
-            view3.setText("D: " + date);
-
-            var view4 as Lang.View = View.findDrawableById("BottomLeft") as Text;
-            view4.setText("S: " + steps);
-
-            var view5 as Lang.View = View.findDrawableById("BottomRight") as Text;
-            view5.setText("H: " + heartRate);
-
-            // Call the parent onUpdate function to redraw the layout
-            View.onUpdate(dc);
+        if (TEST_showAllLedDigits)
+        {
+            var x as Lang.Number = 10;
+            drawLED(dc, 0, x, 100); x+=LED_spacing;
+            drawLED(dc, 1, x, 100); x+=LED_spacing;
+            drawLED(dc, 2, x, 100); x+=LED_spacing;
+            drawLED(dc, 3, x, 100); x+=LED_spacing;
+            drawLED(dc, 4, x, 100);
+            x = 10;
+            drawLED(dc, 5, x, 160); x+=LED_spacing;
+            drawLED(dc, 6, x, 160); x+=LED_spacing;
+            drawLED(dc, 7, x, 160); x+=LED_spacing;
+            drawLED(dc, 8, x, 160); x+=LED_spacing;
+            drawLED(dc, 9, x, 160);
         }
         else
         {
-            // Screen size should be 240x240 (at least on Venu Sq)
-            var screenWidth as Lang.Number = dc.getWidth();
-            var screenHeight as Lang.Number = dc.getHeight();
-
-            // Seem to need to do this first before any other graphic calls in this function
-            dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_BLACK);
-            dc.clear();
-
-            if (WATCH_showBackgroundBitmap)
+            if (WATCH_showTimeWithLeds)
             {
-		        dc.drawBitmap(0, 0, bitmap);
-            }
-
-            // Test lines at extremes (0-239, 0-239):
-            if (TEST_showRuleLines)
-            {
-                dc.setColor(Graphics.COLOR_PINK, Graphics.COLOR_TRANSPARENT);
-                dc.clear();
-                dc.setPenWidth(1);
-                dc.drawLine(0,0,   239,0);
-                dc.drawLine(0,120, 239,120);
-                dc.drawLine(0,239, 239,239);
-                dc.drawLine(0,0,   0,239);
-                dc.drawLine(120,0, 120,239);
-                dc.drawLine(239,0, 239,239);
-            }
-
-            // test draw line
-            //dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-            //dc.setPenWidth(5);        
-       
-            if (TEST_showColoredBoxes)
-            {
-                // These are all the colours we know about
-                drawBox(dc, 10, 30, 15, Graphics.COLOR_BLACK);
-                drawBox(dc, 30, 30, 15, Graphics.COLOR_BLUE);
-                drawBox(dc, 50, 30, 15, Graphics.COLOR_DK_BLUE);
-                drawBox(dc, 70, 30, 15, Graphics.COLOR_DK_GRAY);
-                drawBox(dc, 90, 30, 15, Graphics.COLOR_DK_GREEN);
-                drawBox(dc, 110, 30, 15, Graphics.COLOR_DK_RED);
-                drawBox(dc, 130, 30, 15, Graphics.COLOR_GREEN);
-                drawBox(dc, 150, 30, 15, Graphics.COLOR_LT_GRAY);
-                drawBox(dc, 170, 30, 15, Graphics.COLOR_ORANGE);
-                drawBox(dc, 190, 30, 15, Graphics.COLOR_PINK);
-                drawBox(dc, 210, 30, 15, Graphics.COLOR_PURPLE);
-                drawBox(dc, 10, 60, 15, Graphics.COLOR_RED);
-                drawBox(dc, 30, 60, 15, Graphics.COLOR_TRANSPARENT);
-                drawBox(dc, 50, 60, 15, Graphics.COLOR_WHITE);
-                drawBox(dc, 70, 60, 15, Graphics.COLOR_YELLOW);
-            }
-
-            if (TEST_showAllLedDigits)
-            {
-                var x as Lang.Number = 10;
-                drawLED(dc, 0, x, 100); x+=LED_spacing;
-                drawLED(dc, 1, x, 100); x+=LED_spacing;
-                drawLED(dc, 2, x, 100); x+=LED_spacing;
-                drawLED(dc, 3, x, 100); x+=LED_spacing;
-                drawLED(dc, 4, x, 100);
-                x = 10;
-                drawLED(dc, 5, x, 160); x+=LED_spacing;
-                drawLED(dc, 6, x, 160); x+=LED_spacing;
-                drawLED(dc, 7, x, 160); x+=LED_spacing;
-                drawLED(dc, 8, x, 160); x+=LED_spacing;
-                drawLED(dc, 9, x, 160);
-            }
-            else
-            {
-                if (WATCH_showTimeWithLeds)
+                var x as Lang.Number = 33;
+                var y as Lang.Number = 100;
+                if (!WATCH_24HourMode)
                 {
-                    var x as Lang.Number = 33;
-                    var y as Lang.Number = 100;
-                    if (!WATCH_24HourMode)
+                    x = 1;
+                    y = 90;
+                }
+                var timeArr as Lang.Array = time.toCharArray();
+                // If only 4 characters, then there is only a single hour digit; shift accordingly
+                // to make display look better positioned
+                if (timeArr.size() == 4)
+                {
+                    x+=LED_spacing;
+                }
+                for (var i=0; i<timeArr.size(); i++)
+                {
+                    var asciiChar as Lang.Number = timeArr[i].toNumber();
+                    if (asciiChar == ':')
                     {
-                        x = 1;
-                        y = 90;
+                        // Need to fine tune x position here
+                        drawColon(dc, x-12, y);
                     }
-                    var timeArr as Lang.Array = time.toCharArray();
-                    // If only 4 characters, then there is only a single hour digit; shift accordingly
-                    // to make display look better positioned
-                    if (timeArr.size() == 4)
+                    else
                     {
-                        x+=LED_spacing;
-                    }
-                    for (var i=0; i<timeArr.size(); i++)
-                    {
-                        var asciiChar as Lang.Number = timeArr[i].toNumber();
-                        if (asciiChar == ':')
+                        var digit as Lang.Number = asciiChar - 48; // Subtract 48 from ASCII code to get the digit
+                        if (digit >= 0 && digit <= 9) // Only draw the digits, nothing else
                         {
-                            // Need to fine tune x position here
-                            drawColon(dc, x-12, y);
-                        }
-                        else
-                        {
-                            var digit as Lang.Number = asciiChar - 48; // Subtract 48 from ASCII code to get the digit
-                            if (digit >= 0 && digit <= 9) // Only draw the digits, nothing else
-                            {
-                                drawLED(dc, digit, x, y);
-                                x+=LED_spacing;
-                            }
+                            drawLED(dc, digit, x, y);
+                            x+=LED_spacing;
                         }
                     }
                 }
-                else 
-                {
-                    dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
-                    dc.drawText(screenWidth/2, screenHeight/2, Graphics.FONT_SYSTEM_NUMBER_THAI_HOT, time, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-                }
-            }
-
-            dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-            if (WATCH_showBatteryAsIcon)
-            {
-                drawBattery(dc, WATCH_labelOffset, WATCH_labelOffset/2+5, battery);
             }
             else 
             {
-                var batStr as Lang.String = Lang.format( "$1$%", [ battery.format( "%2d" ) ] ); 
-                dc.drawText(WATCH_labelOffset, WATCH_labelOffset, Graphics.FONT_SMALL, batStr, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
+                dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
+                dc.drawText(screenWidth/2, screenHeight/2, Graphics.FONT_SYSTEM_NUMBER_THAI_HOT, time, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
             }
-            dc.drawText(screenWidth-WATCH_labelOffset, WATCH_labelOffset, Graphics.FONT_SMALL, date, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
-            if (WATCH_showMonth)
-            {
-                var month = getMonth();
-                dc.drawText(screenWidth-WATCH_labelOffset, WATCH_labelOffset+20, Graphics.FONT_SMALL, month, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
-            }
+        }
 
-            if (WATCH_showStepsAsIcon)
-            {
-                var bmpW as Lang.Number = stepsBitmap.getWidth();
-                var bmpH as Lang.Number = stepsBitmap.getHeight();
-                dc.drawBitmap(0, screenHeight-bmpH, stepsBitmap);
-                dc.drawText(bmpW, screenHeight-WATCH_labelOffset-10, Graphics.FONT_SMALL, steps, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
-            }
-            else 
-            {
-                dc.drawText(WATCH_labelOffset, screenHeight-WATCH_labelOffset, Graphics.FONT_SMALL, steps, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
-            }
+        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+        if (WATCH_showBatteryAsIcon)
+        {
+            drawBattery(dc, WATCH_labelOffset, WATCH_labelOffset/2+5, battery);
+        }
+        else 
+        {
+            var batStr as Lang.String = Lang.format( "$1$%", [ battery.format( "%2d" ) ] ); 
+            dc.drawText(WATCH_labelOffset, WATCH_labelOffset, Graphics.FONT_SMALL, batStr, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
+        }
+        
+        dc.drawText(screenWidth-WATCH_labelOffset, WATCH_labelOffset, Graphics.FONT_SMALL, date, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
+        if (WATCH_showMonth)
+        {
+            var month = getMonth();
+            dc.drawText(screenWidth-WATCH_labelOffset, WATCH_labelOffset+20, Graphics.FONT_SMALL, month, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
+        }
 
-            if (WATCH_showHeartAsIcon)
-            {
-                var bmpW as Lang.Number = heartBitmap.getWidth();
-                var bmpH as Lang.Number = heartBitmap.getHeight();
-                dc.drawBitmap(screenWidth-bmpW, screenHeight-bmpH, heartBitmap);
-                dc.drawText(screenWidth-WATCH_labelOffset, screenHeight-WATCH_labelOffset-12, Graphics.FONT_SMALL, heartRate, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
-            }
-            else
-            {
-                dc.drawText(screenWidth-WATCH_labelOffset, screenHeight-WATCH_labelOffset, Graphics.FONT_SMALL, heartRate, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
-            }
+        if (WATCH_showStepsAsIcon)
+        {
+            dc.drawText(stepsBitmap.getWidth(), screenHeight-WATCH_labelOffset-10, Graphics.FONT_SMALL, steps, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
+        }
+        else 
+        {
+            dc.drawText(WATCH_labelOffset, screenHeight-WATCH_labelOffset, Graphics.FONT_SMALL, steps, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
+        }
+
+        if (WATCH_showHeartAsIcon)
+        {
+            dc.drawText(screenWidth-WATCH_labelOffset, screenHeight-WATCH_labelOffset-12, Graphics.FONT_SMALL, heartRate, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
+        }
+        else
+        {
+            dc.drawText(screenWidth-WATCH_labelOffset, screenHeight-WATCH_labelOffset, Graphics.FONT_SMALL, heartRate, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
         }
     }
 
