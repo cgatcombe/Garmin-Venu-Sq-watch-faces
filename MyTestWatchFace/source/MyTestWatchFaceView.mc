@@ -268,7 +268,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
                 var bmpW as Lang.Number = heartBitmap.getWidth();
                 var bmpH as Lang.Number = heartBitmap.getHeight();
                 dc.drawBitmap(screenWidth-bmpW, screenHeight-bmpH, heartBitmap);
-                dc.drawText(screenWidth-WATCH_labelOffset, screenHeight-WATCH_labelOffset-10, Graphics.FONT_SMALL, heartRate, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
+                dc.drawText(screenWidth-WATCH_labelOffset, screenHeight-WATCH_labelOffset-12, Graphics.FONT_SMALL, heartRate, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
             }
             else
             {
