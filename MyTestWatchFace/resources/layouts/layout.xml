@@ -1,4 +1,5 @@
 <layout id="WatchFace">
+    <bitmap id="BitmapBattery" x="0" y="0" filename="../drawables/battery_78x50.png" />
     <bitmap id="BitmapHeart" x="190" y="190" filename="../drawables/heart_50x50.png" />
     <bitmap id="BitmapFootprints" x="0" y="190" filename="../drawables/footsteps_39x50.png" />
 </layout>

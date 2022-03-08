@@ -17,8 +17,6 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
     const WATCH_showBatteryAsIcon as Lang.Boolean = true; // True shows icon with percent; false just shows percent
     const WATCH_showHeartAsIcon as Lang.Boolen = true; // True shows icon with heart rate; false shows without icon
     const WATCH_showStepsAsIcon as Lang.Boolen = true; // True shows icon with steps; false shows without icon
-    //var screenWidth as Lang.Number = dc.getWidth();
-    //var screenHeight as Lang.Number = dc.getHeight();
 
     // Constants for the LED digital display
     var LED_spacing as Lang.Number = 50; // Spacing between LED digits
@@ -35,9 +33,26 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
     const TEST_showColoredBoxes as Lang.Boolean = false; // If true, shows boxes with all the colours for testing
     const TEST_showAllLedDigits as Lang.Boolean = false; // If true, show all LED digits; if false show time
 
-    var bitmap;
+    var doneFirstUpdate as Lang.Boolean = false; // Will get set to true after first time calling onUpdate(), so we initialze things only once
+    var backgroundBitmap;
+
+    // Screen size should be 240x240 (at least on Venu Sq)
+    var screenWidth as Lang.Number;
+    var screenHeight as Lang.Number;
+
+    // Screen objects (access using the layout):
+    var batteryBitmap;
+    var batteryBitmapLayoutObj as Lang.View;
+    var batteryLabelPosX as Lang.Number;
+    var batteryLabelPosY as Lang.Number;
     var heartBitmap;
+    var heartBitmapLayoutObj as Lang.View;
+    var heartLabelPosX as Lang.Number;
+    var heartLabelPosY as Lang.Number;
     var stepsBitmap;
+    var stepsBitmapLayoutObj as Lang.View;
+    var stepsLabelPosX as Lang.Number;
+    var stepsLabelPosY as Lang.Number;
 
     function initialize()
     {
@@ -53,9 +68,15 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
         LED_topOffs = (Math.tan(LED_angleRad)) * LED_height;
         LED_midOffs = (Math.tan(LED_angleRad)) * (LED_height/2);
 
+        // Note - can't access View stuff in here, needs to be done in onUpdate()
         if (WATCH_showBackgroundBitmap)
         {
-            bitmap=WatchUi.loadResource(Rez.Drawables.BackgroundPNG);
+            backgroundBitmap=WatchUi.loadResource(Rez.Drawables.BackgroundPNG);
+        }
+
+        if (WATCH_showBatteryAsIcon)
+        {
+            batteryBitmap=WatchUi.loadResource(Rez.Drawables.BatteryPNG);
         }
 
         if (WATCH_showHeartAsIcon)
@@ -92,6 +113,35 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
     // Update the view
     function onUpdate(dc as Dc) as Void
     {
+        // Check if this is the first time in here so that some things are only set once
+        if (!doneFirstUpdate)
+        {
+            doneFirstUpdate = true;       
+            screenWidth = dc.getWidth();
+            screenHeight = dc.getHeight();
+        
+            batteryBitmapLayoutObj = View.findDrawableById("BitmapBattery") as Text;
+            System.println("onUpdate: batteryBitmapLayoutObj = " + batteryBitmapLayoutObj.toString());
+            System.println("onUpdate: batteryBitmapLayoutObj (x,y) = " + batteryBitmapLayoutObj.locX + "," + batteryBitmapLayoutObj.locY);
+            System.println("onUpdate: batteryBitmapLayoutObj (w,h) = " + batteryBitmapLayoutObj.width + "," + batteryBitmapLayoutObj.height);
+            batteryLabelPosX = batteryBitmapLayoutObj.locX+10;
+            batteryLabelPosY = batteryBitmapLayoutObj.locY + batteryBitmapLayoutObj.height/2;
+
+            heartBitmapLayoutObj = View.findDrawableById("BitmapHeart") as Text;
+            System.println("onUpdate: heartBitmapLayoutObj = " + heartBitmapLayoutObj.toString());
+            System.println("onUpdate: heartBitmapLayoutObj (x,y) = " + heartBitmapLayoutObj.locX + "," + heartBitmapLayoutObj.locY);
+            System.println("onUpdate: heartBitmapLayoutObj (w,h) = " + heartBitmapLayoutObj.width + "," + heartBitmapLayoutObj.height);
+            heartLabelPosX = heartBitmapLayoutObj.locX + heartBitmapLayoutObj.width/2;
+            heartLabelPosY = heartBitmapLayoutObj.locY + heartBitmapLayoutObj.height/2;
+
+            stepsBitmapLayoutObj = View.findDrawableById("BitmapFootprints") as Text;
+            System.println("onUpdate: stepsBitmapLayoutObj = " + stepsBitmapLayoutObj.toString());
+            System.println("onUpdate: stepsBitmapLayoutObj (x,y) = " + stepsBitmapLayoutObj.locX + "," + stepsBitmapLayoutObj.locY);
+            System.println("onUpdate: stepsBitmapLayoutObj (w,h) = " + stepsBitmapLayoutObj.width + "," + stepsBitmapLayoutObj.height);
+            stepsLabelPosX = stepsBitmapLayoutObj.locX + stepsBitmapLayoutObj.width;
+            stepsLabelPosY = stepsBitmapLayoutObj.locY + stepsBitmapLayoutObj.height/2;
+        }
+
         // Get and show the current time and other items of interest
         var time as Lang.String = getTime();
         var battery as Lang.Number = getBattery();
@@ -99,9 +149,9 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
         var steps as Lang.String = getSteps();
         var heartRate as Lang.String = getHeartRate();
       
-        // Screen size should be 240x240 (at least on Venu Sq)
-        var screenWidth as Lang.Number = dc.getWidth();
-        var screenHeight as Lang.Number = dc.getHeight();
+        var view as Lang.View = View.findDrawableById("BitmapHeart") as Text;
+        System.println("onUpdate: view " + view.toString());
+        System.println("onUpdate: view " + view.locX + "," + view.locY);
 
         // Seem to need to do these first before any other graphic calls in this function
         dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_BLACK);
@@ -115,7 +165,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
 
         if (WATCH_showBackgroundBitmap)
         {
-            dc.drawBitmap(0, 0, bitmap);
+            dc.drawBitmap(0, 0, backgroundBitmap);
         }
 
         // Test lines at extremes (0-239, 0-239):
@@ -214,12 +264,14 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         if (WATCH_showBatteryAsIcon)
         {
-            drawBattery(dc, WATCH_labelOffset, WATCH_labelOffset/2+5, battery);
+            drawBattery(dc, battery);
         }
         else 
         {
+            var x as Lang.Number = batteryBitmapLayoutObj.locX + batteryBitmap.getWidth()/2;
+            var y as Lang.Number = batteryBitmapLayoutObj.locY + batteryBitmap.getHeight()/2 - 2;
             var batStr as Lang.String = Lang.format( "$1$%", [ battery.format( "%2d" ) ] ); 
-            dc.drawText(WATCH_labelOffset, WATCH_labelOffset, Graphics.FONT_SMALL, batStr, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
+            dc.drawText(x, y, Graphics.FONT_SMALL, batStr, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
         }
         
         dc.drawText(screenWidth-WATCH_labelOffset, WATCH_labelOffset, Graphics.FONT_SMALL, date, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
@@ -231,7 +283,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
 
         if (WATCH_showStepsAsIcon)
         {
-            dc.drawText(stepsBitmap.getWidth(), screenHeight-WATCH_labelOffset-10, Graphics.FONT_SMALL, steps, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
+            dc.drawText(stepsLabelPosX, stepsLabelPosY, Graphics.FONT_SMALL, steps, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
         }
         else 
         {
@@ -240,7 +292,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
 
         if (WATCH_showHeartAsIcon)
         {
-            dc.drawText(screenWidth-WATCH_labelOffset, screenHeight-WATCH_labelOffset-12, Graphics.FONT_SMALL, heartRate, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
+            dc.drawText(heartLabelPosX, heartLabelPosY, Graphics.FONT_SMALL, heartRate, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
         }
         else
         {
@@ -258,9 +310,11 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
         dc.fillRectangle(x, y, size, size);
     }
 
-    function drawBattery(dc as Dc, x, y, percent) as Void 
+    function drawBattery(dc as Dc, percent) as Void 
     {
         /*
+            See image file for exact dimensions:
+            
                              > t1 < 
               ________________
            ^ |      < w >     |_  v
@@ -268,37 +322,25 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
            v |________________|   ^
 
         */
-        var w as Lang.Number = 55;
-        var h as Lang.Number = 30;
-        var t1 as Lang.Number = 8;
-        var t2 as Lang.Number = 4;
-        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-        dc.setPenWidth(2);
-        dc.drawLine(x,      y,      x+w,    y);
-        dc.drawLine(x+w,    y,      x+w,    y+t1);
-        dc.drawLine(x+w,    y+t1,   x+w+t2, y+t1);
-        dc.drawLine(x+w+t2, y+t1,   x+w+t2, y+h-t1);
-        dc.drawLine(x+w+t2, y+h-t1, x+w,    y+h-t1);
-        dc.drawLine(x+w,    y+h-t1, x+w,    y+h);
-        dc.drawLine(x+w,    y+h,    x,      y+h);
-        dc.drawLine(x,      y+h,    x,      y);
 
-        var width as Lang.Number = (w-4)*percent/100;
+        var width as Lang.Number = (batteryBitmapLayoutObj.width-25)*percent/100;
+        var height as Lang.Number = (batteryBitmapLayoutObj.height/2);
+        System.println("drawBattery: (w,h) = " + width + "," + height);
         var color = Graphics.COLOR_DK_GREEN;
         if (percent<15)
         {
             color = Graphics.COLOR_RED; 
         }
         dc.setColor(color, Graphics.COLOR_TRANSPARENT);
-        dc.fillRectangle(x+2, y+2, width, h-4);
-        if (percent>99)
-        {
-            dc.fillRectangle(x+w-2, y+t1+2, t2, t1+2);
-        }    
+        dc.fillRectangle(batteryLabelPosX-2, batteryLabelPosY-12, width, height);
+        //if (percent>99)
+        //{
+        //    dc.fillRectangle(x+w-2, y+t2+2, t1, t2+2);
+        //}    
 
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         var percentStr as Lang.String = Lang.format( "$1$%", [ percent.format( "%2d" ) ] );  
-        dc.drawText(x+4, y+h/2-1, Graphics.FONT_SMALL, percentStr, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
+        dc.drawText(batteryLabelPosX, batteryLabelPosY, Graphics.FONT_SMALL, percentStr, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
     }
 
     function drawColon(dc as Dc, x, y) as Void
