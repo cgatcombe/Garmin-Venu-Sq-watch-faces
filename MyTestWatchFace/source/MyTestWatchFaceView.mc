@@ -132,7 +132,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
             System.println("onUpdate: heartBitmapLayoutObj (x,y) = " + heartBitmapLayoutObj.locX + "," + heartBitmapLayoutObj.locY);
             System.println("onUpdate: heartBitmapLayoutObj (w,h) = " + heartBitmapLayoutObj.width + "," + heartBitmapLayoutObj.height);
             heartLabelPosX = heartBitmapLayoutObj.locX + heartBitmapLayoutObj.width/2;
-            heartLabelPosY = heartBitmapLayoutObj.locY + heartBitmapLayoutObj.height/2;
+            heartLabelPosY = heartBitmapLayoutObj.locY + heartBitmapLayoutObj.height/2 - 3;
 
             stepsBitmapLayoutObj = View.findDrawableById("BitmapFootprints") as Text;
             System.println("onUpdate: stepsBitmapLayoutObj = " + stepsBitmapLayoutObj.toString());
