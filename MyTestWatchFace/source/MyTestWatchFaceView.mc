@@ -129,11 +129,34 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
             // Set positions of the labels:
             // If icons are to be shown, then these positions are based on the icon's location and size.
             // There may be some arbitrary fine tuning for the locations to make them 'look right'.
+
+            if (WATCH_showCalendarIcon)
+            {
+                calendarBitmapLayoutObj = View.findDrawableById("BitmapCalendar") as Text;
+                monthLabelPosX = calendarBitmapLayoutObj.locX + calendarBitmapLayoutObj.width/2;
+                monthLabelPosY = calendarBitmapLayoutObj.locY + 20;
+                dateLabelPosX = monthLabelPosX;
+                dateLabelPosY = monthLabelPosY + 27;
+            }
+            else 
+            {
+                dateLabelPosX = screenWidth-WATCH_labelOffset;
+                dateLabelPosY = WATCH_labelOffset;
+                monthLabelPosX = dateLabelPosX;
+                monthLabelPosY = dateLabelPosY+20;
+            }
+            System.println("onUpdate: dateLabelPos (x,y) = " + dateLabelPosX + "," + dateLabelPosY);
+            System.println("onUpdate: monthLabelPos (x,y) = " + monthLabelPosX + "," + monthLabelPosY);
+
             batteryBitmapLayoutObj = View.findDrawableById("BitmapBattery") as Text;
             System.println("onUpdate: batteryBitmapLayoutObj (x,y) = " + batteryBitmapLayoutObj.locX + "," + batteryBitmapLayoutObj.locY);
             System.println("onUpdate: batteryBitmapLayoutObj (w,h) = " + batteryBitmapLayoutObj.width + "," + batteryBitmapLayoutObj.height);
             if (WATCH_showIcons)
             {
+                if (WATCH_showCalendarIcon)
+                {
+                    batteryBitmapLayoutObj.locY = calendarBitmapLayoutObj.height/2 - batteryBitmapLayoutObj.height/2;
+                }
                 batteryLabelPosX = batteryBitmapLayoutObj.locX+10;
                 batteryLabelPosY = batteryBitmapLayoutObj.locY + batteryBitmapLayoutObj.height/2;
             }
@@ -173,24 +196,6 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
                 stepsLabelPosY = screenHeight-WATCH_labelOffset;
             }
             System.println("onUpdate: stepsLabelPos (x,y) = " + stepsLabelPosX + "," + stepsLabelPosY);
-
-            if (WATCH_showCalendarIcon)
-            {
-                calendarBitmapLayoutObj = View.findDrawableById("BitmapCalendar") as Text;
-                monthLabelPosX = calendarBitmapLayoutObj.locX + calendarBitmapLayoutObj.width/2;
-                monthLabelPosY = calendarBitmapLayoutObj.locY + 20;
-                dateLabelPosX = monthLabelPosX;
-                dateLabelPosY = monthLabelPosY + 27;
-            }
-            else 
-            {
-                dateLabelPosX = screenWidth-WATCH_labelOffset;
-                dateLabelPosY = WATCH_labelOffset;
-                monthLabelPosX = dateLabelPosX;
-                monthLabelPosY = dateLabelPosY+20;
-            }
-            System.println("onUpdate: dateLabelPos (x,y) = " + dateLabelPosX + "," + dateLabelPosY);
-            System.println("onUpdate: monthLabelPos (x,y) = " + monthLabelPosX + "," + monthLabelPosY);
         }
 
         // Get and show the current time and other items of interest
