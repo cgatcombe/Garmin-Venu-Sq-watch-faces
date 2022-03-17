@@ -15,6 +15,7 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
     const WATCH_24HourMode as Lang.Boolean = false; // True for 24hr display; false for 12 hour display (though no am/pm indicator)
     const WATCH_showMonth as Lang.Boolean = true; // False just shows Day/Date; true additionally shows Month
     const WATCH_showIcons as Lang.Boolean = true; // True shows icons (via definitions in layout.xml and view) with text labels; false just shows text labels
+    const WATCH_showCalendarIcon as Lang.Boolean = true; // If true show calendar icon with text; false show text only
 
     // Constants for the LED digital display
     var LED_spacing as Lang.Number = 50; // Spacing between LED digits
@@ -39,16 +40,24 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
     var screenHeight as Lang.Number;
 
     // Screen objects (access using the layout):
-    var dateLabelPosX;
-    var dateLabelPosY;
+    var dateLabelPosX as Lang.Number;
+    var dateLabelPosY as Lang.Number;
+    var monthLabelPosX as Lang.Number;
+    var monthLabelPosY as Lang.Number;
+    
+    var calendarBitmap;
+    var calendarBitmapLayoutObj as Lang.View;
+
     var batteryBitmap;
     var batteryBitmapLayoutObj as Lang.View;
     var batteryLabelPosX as Lang.Number;
     var batteryLabelPosY as Lang.Number;
+
     var heartBitmap;
     var heartBitmapLayoutObj as Lang.View;
     var heartLabelPosX as Lang.Number;
     var heartLabelPosY as Lang.Number;
+
     var stepsBitmap;
     var stepsBitmapLayoutObj as Lang.View;
     var stepsLabelPosX as Lang.Number;
@@ -79,6 +88,11 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
             batteryBitmap=WatchUi.loadResource(Rez.Drawables.BatteryPNG);
             heartBitmap=WatchUi.loadResource(Rez.Drawables.HeartPNG);
             stepsBitmap=WatchUi.loadResource(Rez.Drawables.FootprintsPNG);
+        }
+
+        if (WATCH_showCalendarIcon)
+        {
+            calendarBitmap=WatchUi.loadResource(Rez.Drawables.CalendarPNG);
         }
 
         if (WATCH_useInbuiltSensors)
@@ -160,9 +174,23 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
             }
             System.println("onUpdate: stepsLabelPos (x,y) = " + stepsLabelPosX + "," + stepsLabelPosY);
 
-            dateLabelPosX = screenWidth-WATCH_labelOffset;
-            dateLabelPosY = WATCH_labelOffset;
+            if (WATCH_showCalendarIcon)
+            {
+                calendarBitmapLayoutObj = View.findDrawableById("BitmapCalendar") as Text;
+                monthLabelPosX = calendarBitmapLayoutObj.locX + calendarBitmapLayoutObj.width/2;
+                monthLabelPosY = calendarBitmapLayoutObj.locY + 20;
+                dateLabelPosX = monthLabelPosX;
+                dateLabelPosY = monthLabelPosY + 27;
+            }
+            else 
+            {
+                dateLabelPosX = screenWidth-WATCH_labelOffset;
+                dateLabelPosY = WATCH_labelOffset;
+                monthLabelPosX = dateLabelPosX;
+                monthLabelPosY = dateLabelPosY+20;
+            }
             System.println("onUpdate: dateLabelPos (x,y) = " + dateLabelPosX + "," + dateLabelPosY);
+            System.println("onUpdate: monthLabelPos (x,y) = " + monthLabelPosX + "," + monthLabelPosY);
         }
 
         // Get and show the current time and other items of interest
@@ -295,11 +323,25 @@ class MyTestWatchFaceView extends WatchUi.WatchFace
             dc.drawText(WATCH_labelOffset, WATCH_labelOffset, Graphics.FONT_SMALL, batStr, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
         }
 
-        dc.drawText(dateLabelPosX, dateLabelPosY, Graphics.FONT_SMALL, date, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
+        if (WATCH_showCalendarIcon)
+        {
+            dc.drawText(dateLabelPosX, dateLabelPosY, Graphics.FONT_SMALL, date, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+        }
+        else
+        {
+            dc.drawText(dateLabelPosX, dateLabelPosY, Graphics.FONT_SMALL, date, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
+        }
         if (WATCH_showMonth)
         {
             var month = getMonth();
-            dc.drawText(dateLabelPosX, dateLabelPosY+20, Graphics.FONT_SMALL, month, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
+            if (WATCH_showCalendarIcon)
+            {
+                dc.drawText(monthLabelPosX, monthLabelPosY, Graphics.FONT_SMALL, month, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+            }
+            else 
+            {
+                dc.drawText(monthLabelPosX, monthLabelPosY, Graphics.FONT_SMALL, month, Graphics.TEXT_JUSTIFY_RIGHT | Graphics.TEXT_JUSTIFY_VCENTER);
+            }
         }
 
         dc.drawText(stepsLabelPosX, stepsLabelPosY, Graphics.FONT_SMALL, steps, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
