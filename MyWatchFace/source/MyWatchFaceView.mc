@@ -5,7 +5,7 @@ import Toybox.WatchUi;
 using Toybox.Sensor;
 using Toybox.Time.Gregorian as Gregorian;
 
-class MyTestWatchFaceView extends WatchUi.WatchFace
+class MyWatchFaceView extends WatchUi.WatchFace
 {
     // Constants for main watch screen display
     const WATCH_useInbuiltSensors as Lang.Boolean = false; // If true, use sensors (doesn't work yet)
